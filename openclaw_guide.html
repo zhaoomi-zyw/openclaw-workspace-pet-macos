@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>OpenClaw CLI 常用命令指南</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", Arial, sans-serif; margin: 0; padding: 0; color: #1a1a1a; line-height: 1.7; background: #fff; }
+  .cover { background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 55%, #388e3c 100%); color: white; padding: 60px 50px 50px 50px; min-height: 100vh; }
+  .cover h1 { font-size: 30px; margin: 0 0 15px 0; font-weight: bold; letter-spacing: 2px; }
+  .cover h2 { font-size: 16px; font-weight: normal; opacity: 0.9; margin: 0 0 30px 0; border-left: 4px solid rgba(255,255,255,0.5); padding-left: 15px; }
+  .cover .meta { background: rgba(255,255,255,0.15); border-radius: 8px; padding: 15px 20px; font-size: 14px; margin-top: 20px; display: inline-block; }
+  .cover .version { font-size: 14px; opacity: 0.8; margin-bottom: 10px; }
+  .content { max-width: 900px; margin: 0 auto; padding: 0 40px 60px 40px; }
+  .content h2 { color: #fff; background: linear-gradient(90deg, #1b5e20, #2e7d32); padding: 12px 20px; border-radius: 6px; font-size: 17px; margin: 35px 0 18px 0; }
+  .content h3 { color: #1b5e20; font-size: 15px; margin: 25px 0 10px 0; border-left: 4px solid #43a047; padding-left: 12px; }
+  .cmd-block { border: 1px solid #c8e6c9; border-radius: 10px; padding: 18px 20px; margin: 15px 0; background: #fafffe; }
+  .cmd-block h4 { margin: 0 0 8px 0; color: #1b5e20; font-size: 15px; }
+  .cmd-line { background: #1a1a2e; color: #a8ff78; padding: 8px 14px; border-radius: 6px; font-family: "Courier New", monospace; font-size: 13px; margin: 8px 0; display: block; overflow-x: auto; white-space: pre; }
+  .cmd-line .comment { color: #6272a4; }
+  .cmd-line .flag { color: #ff79c6; }
+  .cmd-line .arg { color: #f1fa8c; }
+  .cmd-line .cmd { color: #50fa7b; }
+  .cmd-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  .cmd-table th { background: #1b5e20; color: white; padding: 9px 12px; text-align: left; }
+  .cmd-table td { padding: 7px 12px; border-bottom: 1px solid #e0e0e0; }
+  .cmd-table tr:nth-child(even) td { background: #f5f9f5; }
+  .cmd-table td:first-child { font-family: "Courier New", monospace; color: #2e7d32; font-size: 12px; white-space: nowrap; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; margin-right: 4px; }
+  .tag-green { background: #e8f5e9; color: #1b5e20; }
+  .tag-blue { background: #e3f2fd; color: #1565c0; }
+  .tag-yellow { background: #fff8e1; color: #f57f17; }
+  .tag-red { background: #ffebee; color: #c62828; }
+  ul { margin: 8px 0; padding-left: 20px; }
+  li { margin-bottom: 5px; }
+  .footer { background: #1b5e20; color: rgba(255,255,255,0.7); text-align: center; padding: 20px; font-size: 12px; margin-top: 40px; }
+  .section-box { border: 1px solid #c8e6c9; border-radius: 8px; padding: 16px 20px; margin: 15px 0; background: #fafffe; }
+  .note { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px 15px; border-radius: 0 6px 6px 0; font-size: 13px; margin: 12px 0; }
+  .page-break { page-break-before: always; }
+  .two-col { display: flex; gap: 20px; flex-wrap: wrap; }
+  .two-col > div { flex: 1; min-width: 300px; }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <div style="font-size:48px;margin-bottom:20px;">🦞</div>
+  <h1>OpenClaw CLI 常用命令指南</h1>
+  <h2>Gateway · Skills · Plugins · Agents · Cron · Channels<br>2026年4月 · v2026.3.31</h2>
+  <div class="version">OpenClaw v2026.3.31 (213a704)</div>
+  <div class="meta">
+    📅 生成时间：2026年4月8日 &nbsp;|&nbsp; 📡 适用版本：v2026.3.31+ &nbsp;|&nbsp; 🔒 仅供参考
+  </div>
+</div>
+
+<div class="content">
+
+<!-- 一、Gateway 管理 -->
+<h2>一、Gateway 管理（最常用）</h2>
+
+<h3>🔴 Gateway 服务控制</h3>
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>常用场景</th></tr>
+  <tr><td>openclaw gateway status</td><td>查看 Gateway 服务状态 + 连通性检测</td><td>每次连接前必查</td></tr>
+  <tr><td>openclaw gateway start</td><td>启动 Gateway 服务</td><td>服务未运行时</td></tr>
+  <tr><td>openclaw gateway stop</td><td>停止 Gateway 服务</td><td>重启前或关闭时</td></tr>
+  <tr><td>openclaw gateway restart</td><td>重启 Gateway 服务</td><td>配置变更后</td></tr>
+  <tr><td>openclaw gateway run</td><td>前台运行 Gateway（看日志）</td><td>调试/排查问题时</td></tr>
+  <tr><td>openclaw gateway health</td><td>查询 Gateway 健康状态</td><td>检查服务是否正常</td></tr>
+</table>
+
+<h3>🌐 Gateway 网络配置</h3>
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw gateway start --bind lan</td><td>绑定 LAN IP（局域网访问）</td><td>其他设备连接</td></tr>
+  <tr><td>openclaw gateway start --bind loopback</td><td>仅本地回环（默认）</td><td>安全模式</td></tr>
+  <tr><td>openclaw gateway start --port 18789</td><td>指定端口</td><td>端口冲突时</td></tr>
+  <tr><td>openclaw gateway start --token XXXX</td><td>设置访问 Token</td><td>认证模式</td></tr>
+  <tr><td>openclaw dashboard</td><td>打开 Web 控制台</td><td>浏览器管理界面</td></tr>
+</table>
+
+<div class="note">
+  <b>Gateway bind 模式说明：</b><br>
+  • <b>loopback</b>：仅本机访问（默认，安全）<br>
+  • <b>lan</b>：绑定 0.0.0.0，局域网可访问<br>
+  • <b>tailnet</b>：通过 Tailscale 网络访问（需配置 tailscale mode）<br>
+  • <b>auto</b>：自动选择最佳模式
+</div>
+
+<div class="cmd-block">
+  <h4>💡 典型 Gateway 启动流程</h4>
+  <span class="cmd-line"><span class="comment"># 1. 查看当前状态</span></span>
+  <span class="cmd-line">openclaw gateway status</span>
+  <span class="cmd-line"><span class="comment"># 2. 启动服务（局域网模式）</span></span>
+  <span class="cmd-line">openclaw gateway start --bind lan</span>
+  <span class="cmd-line"><span class="comment"># 3. 打开控制台</span></span>
+  <span class="cmd-line">openclaw dashboard</span>
+  <span class="cmd-line"><span class="comment"># 4. 查看实时日志</span></span>
+  <span class="cmd-line">openclaw logs</span>
+</div>
+
+<!-- 二、Skills 管理 -->
+<h2 class="page-break">二、Skills 管理</h2>
+
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw skills list</td><td>列出所有已安装 Skills</td><td>查看当前环境</td></tr>
+  <tr><td>openclaw skills search &lt;关键词&gt;</td><td>搜索 ClawHub 上的 Skills</td><td>找新工具</td></tr>
+  <tr><td>openclaw skills install &lt;url&gt;</td><td>从 ClawHub/GitHub 安装 Skill</td><td>安装新 Skill</td></tr>
+  <tr><td>openclaw skills info &lt;skill名&gt;</td><td>查看 Skill 详细信息</td><td>了解 Skill 用途</td></tr>
+  <tr><td>openclaw skills check</td><td>检查 Skills 依赖是否满足</td><td>排查问题用</td></tr>
+  <tr><td>openclaw skills update</td><td>更新所有已安装的 Skills</td><td>保持最新</td></tr>
+</table>
+
+<div class="cmd-block">
+  <h4>💡 Skills 安装示例</h4>
+  <span class="cmd-line"><span class="comment"># 从 ClawHub 安装（完整包名）</span></span>
+  <span class="cmd-line">openclaw skills install clawhub.ai/username/skill-name</span>
+  <span class="cmd-line"><span class="comment"># 从 GitHub 安装</span></span>
+  <span class="cmd-line">openclaw skills install https://github.com/user/repo</span>
+  <span class="cmd-line"><span class="comment"># 查看已安装的 Skills</span></span>
+  <span class="cmd-line">openclaw skills list</span>
+</div>
+
+<!-- 三、Plugins 管理 -->
+<h2>三、Plugins 管理</h2>
+
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw plugins list</td><td>列出所有已发现 Plugins</td><td>查看可用插件</td></tr>
+  <tr><td>openclaw plugins install &lt;包名&gt;</td><td>安装 Plugin</td><td>扩展功能</td></tr>
+  <tr><td>openclaw plugins uninstall &lt;id&gt;</td><td>卸载 Plugin</td><td>清理不需要的</td></tr>
+  <tr><td>openclaw plugins enable &lt;id&gt;</td><td>启用 Plugin</td><td>开启功能</td></tr>
+  <tr><td>openclaw plugins disable &lt;id&gt;</td><td>禁用 Plugin</td><td>关闭功能</td></tr>
+  <tr><td>openclaw plugins doctor</td><td>检查 Plugin 加载问题</td><td>排查问题用</td></tr>
+  <tr><td>openclaw plugins update</td><td>更新所有 Plugins</td><td>保持最新</td></tr>
+</table>
+
+<!-- 四、Agents 管理 -->
+<h2 class="page-break">四、Agents 管理</h2>
+
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw agents list</td><td>列出所有配置的 Agent</td><td>查看当前 Agent</td></tr>
+  <tr><td>openclaw agents add &lt;name&gt;</td><td>添加新 Agent</td><td>创建新工作区</td></tr>
+  <tr><td>openclaw agents delete &lt;name&gt;</td><td>删除 Agent</td><td>清理不需要的</td></tr>
+  <tr><td>openclaw agents bindings</td><td>查看路由绑定</td><td>查看来源路由</td></tr>
+  <tr><td>openclaw agents bind &lt;name&gt; &lt;规则&gt;</td><td>添加路由绑定</td><td>配置消息路由</td></tr>
+  <tr><td>openclaw agents set-identity &lt;name&gt;</td><td>设置 Agent 身份</td><td>名称/主题/头像</td></tr>
+</table>
+
+<!-- 五、Channels 管理 -->
+<h2>五、Channels 渠道管理</h2>
+
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw channels list</td><td>列出所有已配置渠道</td><td>查看连接状态</td></tr>
+  <tr><td>openclaw channels status</td><td>查看渠道详细状态</td><td>排查连接问题</td></tr>
+  <tr><td>openclaw channels add &lt;参数&gt;</td><td>添加渠道账号</td><td>配置新渠道</td></tr>
+  <tr><td>openclaw channels login &lt;渠道&gt;</td><td>登录渠道账号</td><td>授权连接</td></tr>
+  <tr><td>openclaw channels logout &lt;渠道&gt;</td><td>登出渠道账号</td><td>断开连接</td></tr>
+  <tr><td>openclaw channels logs</td><td>查看渠道日志</td><td>调试问题</td></tr>
+  <tr><td>openclaw channels resolve &lt;名称&gt;</td><td>解析渠道/用户 ID</td><td>获取对话 ID</td></tr>
+</table>
+
+<div class="cmd-block">
+  <h4>💡 添加渠道示例</h4>
+  <span class="cmd-line"><span class="comment"># 添加 Telegram Bot</span></span>
+  <span class="cmd-line">openclaw channels add --channel telegram --token &lt;你的Bot Token&gt;</span>
+  <span class="cmd-line"><span class="comment"># 添加 QQ 频道 Bot</span></span>
+  <span class="cmd-line">openclaw channels add --channel qqgroup --app-id &lt;AppID&gt; --token &lt;Token&gt;</span>
+  <span class="cmd-line"><span class="comment"># 查看渠道状态</span></span>
+  <span class="cmd-line">openclaw channels status</span>
+</div>
+
+<!-- 六、Cron 定时任务 -->
+<h2 class="page-break">六、Cron 定时任务</h2>
+
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw cron list</td><td>列出所有 Cron 任务</td><td>查看已配置的定时任务</td></tr>
+  <tr><td>openclaw cron add &lt;参数&gt;</td><td>添加新 Cron 任务</td><td>创建定时任务</td></tr>
+  <tr><td>openclaw cron rm &lt;id&gt;</td><td>删除 Cron 任务</td><td>移除定时任务</td></tr>
+  <tr><td>openclaw cron run &lt;id&gt;</td><td>立即运行 Cron 任务</td><td>调试/手动触发</td></tr>
+  <tr><td>openclaw cron runs &lt;id&gt;</td><td>查看任务执行历史</td><td>检查运行结果</td></tr>
+  <tr><td>openclaw cron status</td><td>查看 Cron 调度器状态</td><td>检查是否正常</td></tr>
+  <tr><td>openclaw cron disable &lt;id&gt;</td><td>禁用 Cron 任务</td><td>暂停定时任务</td></tr>
+  <tr><td>openclaw cron enable &lt;id&gt;</td><td>启用 Cron 任务</td><td>恢复定时任务</td></tr>
+</table>
+
+<div class="cmd-block">
+  <h4>💡 Cron 任务添加示例</h4>
+  <span class="cmd-line"><span class="comment"># 添加每天早上9点执行的定时任务</span></span>
+  <span class="cmd-line">openclaw cron add --name "daily-report" --schedule "0 9 * * *" --message "生成今日竞品报告" --agent pet-macos</span>
+  <span class="cmd-line"><span class="comment"># 列出所有 Cron 任务</span></span>
+  <span class="cmd-line">openclaw cron list</span>
+  <span class="cmd-line"><span class="comment"># 手动触发一次</span></span>
+  <span class="cmd-line">openclaw cron run &lt;任务ID&gt;</span>
+</div>
+
+<!-- 七、Models 管理 -->
+<h2>七、Models 管理</h2>
+
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw models list</td><td>列出所有可用模型</td><td>查看已配置模型</td></tr>
+  <tr><td>openclaw models status</td><td>查看当前模型状态</td><td>检查模型连接</td></tr>
+  <tr><td>openclaw models set &lt;模型名&gt;</td><td>设置默认模型</td><td>切换主模型</td></tr>
+  <tr><td>openclaw models set-image &lt;模型名&gt;</td><td>设置图片模型</td><td>切换图片生成模型</td></tr>
+  <tr><td>openclaw models auth</td><td>管理模型认证配置</td><td>API Key 配置</td></tr>
+  <tr><td>openclaw models scan</td><td>扫描 OpenRouter 免费模型</td><td>发现可用模型</td></tr>
+</table>
+
+<!-- 八、实用工具 -->
+<h2 class="page-break">八、实用工具命令</h2>
+
+<h3>🛠️ 配置与管理</h3>
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw configure</td><td>交互式配置向导</td><td>首次配置引导</td></tr>
+  <tr><td>openclaw config get &lt;key&gt;</td><td>读取配置项</td><td>查看某个配置</td></tr>
+  <tr><td>openclaw config set &lt;key&gt; &lt;value&gt;</td><td>设置配置项</td><td>修改配置</td></tr>
+  <tr><td>openclaw doctor</td><td>健康检查 + 自动修复</td><td>排查常见问题</td></tr>
+  <tr><td>openclaw doctor --fix</td><td>自动修复问题</td><td>自动修复已知问题</td></tr>
+  <tr><td>openclaw version</td><td>查看版本信息</td><td>确认安装版本</td></tr>
+  <tr><td>openclaw docs</td><td>打开官方文档</td><td>浏览器查看</td></tr>
+  <tr><td>openclaw reset</td><td>重置本地配置/状态</td><td>慎用，会清除数据</td></tr>
+</table>
+
+<h3>📊 日志与监控</h3>
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw logs</td><td>实时查看 Gateway 日志</td><td>调试问题</td></tr>
+  <tr><td>openclaw gateway usage-cost</td><td>查看用量和费用汇总</td><td>成本统计</td></tr>
+  <tr><td>openclaw memory search &lt;关键词&gt;</td><td>搜索记忆文件</td><td>查找历史内容</td></tr>
+</table>
+
+<h3>📡 设备与配对</h3>
+<table class="cmd-table">
+  <tr><th>命令</th><th>功能</th><th>说明</th></tr>
+  <tr><td>openclaw devices list</td><td>列出已配对设备</td><td>查看连接设备</td></tr>
+  <tr><td>openclaw pairing list</td><td>查看配对请求</td><td>审批配对</td></tr>
+  <tr><td>openclaw qr</td><td>生成 iOS 配对二维码</td><td>移动端配对</td></tr>
+  <tr><td>openclaw node</td><td>管理 headless 节点服务</td><td>远程节点</td></tr>
+</table>
+
+<!-- 九、常用场景 -->
+<h2 class="page-break">九、常用场景速查</h2>
+
+<div class="two-col">
+
+<div>
+<h3>🔧 首次安装后</h3>
+<div class="section-box">
+<span class="cmd-line">openclaw configure</span>
+<span class="cmd-line">openclaw gateway start</span>
+<span class="cmd-line">openclaw skills list</span>
+<span class="cmd-line">openclaw doctor</span>
+</div>
+
+<h3>🌐 远程访问配置</h3>
+<div class="section-box">
+<span class="cmd-line"><span class="comment"># 启动并允许局域网访问</span></span>
+<span class="cmd-line">openclaw gateway start --bind lan</span>
+<span class="cmd-line"><span class="comment"># 查看 Gateway 状态</span></span>
+<span class="cmd-line">openclaw gateway status</span>
+</div>
+</div>
+
+<div>
+<h3>📦 安装新 Skill</h3>
+<div class="section-box">
+<span class="cmd-line"><span class="comment"># 搜索 Skill</span></span>
+<span class="cmd-line">openclaw skills search web-access</span>
+<span class="cmd-line"><span class="comment"># 安装</span></span>
+<span class="cmd-line">openclaw skills install clawhub.ai/teingi/web-access</span>
+<span class="cmd-line"><span class="comment"># 验证</span></span>
+<span class="cmd-line">openclaw skills check</span>
+</div>
+
+<h3>🐛 排查问题</h3>
+<div class="section-box">
+<span class="cmd-line"><span class="comment"># 1. 检查服务状态</span></span>
+<span class="cmd-line">openclaw gateway status</span>
+<span class="cmd-line"><span class="comment"># 2. 查看实时日志</span></span>
+<span class="cmd-line">openclaw logs</span>
+<span class="cmd-line"><span class="comment"># 3. 自动诊断修复</span></span>
+<span class="cmd-line">openclaw doctor --fix</span>
+</div>
+</div>
+
+</div>
+
+<!-- 十、命令速查表 -->
+<h2 class="page-break">十、命令速查表（按频率）</h2>
+
+<table class="cmd-table">
+  <tr><th>频率</th><th>命令</th><th>用途</th></tr>
+  <tr><td><span class="tag tag-green">每天</span></td><td>openclaw gateway status</td><td>确认 Gateway 运行</td></tr>
+  <tr><td><span class="tag tag-green">每天</span></td><td>openclaw skills list</td><td>检查 Skills 状态</td></tr>
+  <tr><td><span class="tag tag-green">每天</span></td><td>openclaw gateway start</td><td>启动 Gateway</td></tr>
+  <tr><td><span class="tag tag-blue">每周</span></td><td>openclaw skills update</td><td>更新 Skills</td></tr>
+  <tr><td><span class="tag tag-blue">每周</span></td><td>openclaw plugins update</td><td>更新 Plugins</td></tr>
+  <tr><td><span class="tag tag-blue">每周</span></td><td>openclaw doctor</td><td>全面检查</td></tr>
+  <tr><td><span class="tag tag-yellow">偶尔</span></td><td>openclaw channels add</td><td>配置新渠道</td></tr>
+  <tr><td><span class="tag tag-yellow">偶尔</span></td><td>openclaw agents add</td><td>创建新 Agent</td></tr>
+  <tr><td><span class="tag tag-yellow">偶尔</span></td><td>openclaw cron add</td><td>添加定时任务</td></tr>
+  <tr><td><span class="tag tag-yellow">偶尔</span></td><td>openclaw models set</td><td>切换模型</td></tr>
+  <tr><td><span class="tag tag-red">很少</span></td><td>openclaw reset</td><td>重置（慎用）</td></tr>
+  <tr><td><span class="tag tag-red">很少</span></td><td>openclaw backup create</td><td>创建备份</td></tr>
+</table>
+
+</div>
+
+<div class="footer">
+  📅 生成时间：2026年4月8日 &nbsp;|&nbsp; OpenClaw v2026.3.31 (213a704)<br>
+  📡 参考文档：https://docs.openclaw.ai/cli<br>
+  🔒 仅供参考，如有问题请查阅官方文档
+</div>
+
+</body>
+</html>
