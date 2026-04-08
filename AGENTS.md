@@ -84,6 +84,7 @@ Before ending any main session, run this mental check:
 - [ ] **用户有明确偏好/要求吗？** 有则写入 `USER.md`
 - [ ] **研究报告路径更新了吗？** 新报告写入 MEMORY.md 对应章节
 - [ ] **commit workspace** 有变更则 commit
+- [ ] **git push** 每次 commit 后同步推送到 GitHub（https://github.com/zhaoomi-zyw/openclaw-workspace-pet-macos）
 
 ## Red Lines
 
@@ -246,6 +247,9 @@ Periodically (every few days), use a heartbeat to:
 Think of it like a human reviewing their journal and updating their mental model. Daily files are raw notes; MEMORY.md is curated wisdom.
 
 **MEMORY.md should always contain a section like:**
+
+**GitHub 同步要求：** 每次 commit 后必须 `git push`，确保 GitHub 仓库与本地同步。新会话开始前确认上次 push 已完成。
+
 ```markdown
 ## 当前进行中项目
 - [项目名] — [状态] — [最后进展日期]

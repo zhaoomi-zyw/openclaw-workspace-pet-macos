@@ -31,6 +31,8 @@
 - Chrome: v136 installed at `/Applications/Google Chrome.app`
 - Tavily API key: configured in `~/.openclaw/.env`
 - openclaw-tavily-search skill installed (via cn mirror)
+- **GitHub 仓库**：https://github.com/zhaoomi-zyw/openclaw-workspace-pet-macos（Private）
+- **GitHub 同步**：每次 commit 后必须 `git push`，确保本地与 GitHub 同步
 
 ## 市场研究成果
 
