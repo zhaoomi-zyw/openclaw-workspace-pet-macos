@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<style>
+@page {
+  size: A4;
+  margin: 15mm 15mm 15mm 15mm;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #FFFFFF; color: #1D3E2F; font-size: 12px; line-height: 1.6; }
+
+.page { page-break-before: always; page-break-after: always; page-break-inside: avoid; padding: 0 0 8px 0; }
+.page:first-of-type { page-break-before: avoid; }
+
+h1 { font-size: 22px; color: #1E5631; text-align: center; margin-bottom: 4px; letter-spacing: 1px; }
+h2 { font-size: 14px; color: #FFFFFF; background: #1E5631; padding: 8px 14px; border-radius: 6px; margin-bottom: 10px; letter-spacing: 0.5px; }
+h3 { font-size: 12px; color: #1E5631; margin: 8px 0 5px; font-weight: bold; }
+h4 { font-size: 11px; color: #1E5631; margin: 0 0 5px 0; font-weight: bold; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+
+.card { background: #F9F9F9; border-radius: 6px; padding: 10px; border-top: 2.5px solid #1E5631; overflow: hidden; }
+.metric { font-size: 24px; font-weight: bold; color: #1E5631; line-height: 1.2; }
+.metric-label { color: #555555; font-size: 10px; margin-top: 3px; }
+.text-green { color: #1E5631; font-weight: bold; }
+.text-small { font-size: 10px; color: #555555; margin-top: 4px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 11px; background: #FFFFFF; border-radius: 5px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.06); table-layout: fixed; }
+th { background: #1E5631; color: #FFFFFF; padding: 7px 10px; text-align: left; font-size: 11px; white-space: nowrap; }
+td { padding: 6px 10px; border-bottom: 1px solid #E0E0E0; color: #1D3E2F; font-size: 10.5px; word-break: break-word; }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #F9F9F9; }
+
+.bar-chart { margin: 6px 0; }
+.bar-row { display: flex; align-items: center; margin: 4px 0; }
+.bar-label { width: 100px; color: #1D3E2F; font-size: 10.5px; flex-shrink: 0; }
+.bar-track { flex: 1; height: 16px; background: #E8F5EC; border-radius: 3px; margin: 0 8px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 6px; font-size: 10px; font-weight: bold; color: #FFFFFF; white-space: nowrap; }
+.bar-value { width: 36px; text-align: right; color: #1E5631; font-size: 10.5px; font-weight: bold; flex-shrink: 0; }
+
+.tag { display: inline-block; background: #E8F5EC; color: #1E5631; padding: 1px 6px; border-radius: 10px; font-size: 10px; margin: 1px; font-weight: bold; white-space: nowrap; }
+
+.journey-stage { background: #F9F9F9; border-radius: 6px; padding: 8px; border-top: 2.5px solid #1E5631; overflow: hidden; }
+.journey-stage ul { list-style: none; padding: 0; margin: 0; }
+.journey-stage li { font-size: 10px; color: #1D3E2F; padding: 1.5px 0; padding-left: 10px; position: relative; }
+.journey-stage li::before { content: '•'; position: absolute; left: 0; color: #1E5631; font-weight: bold; }
+
+.journey-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; gap: 4px; align-items: stretch; margin-bottom: 8px; }
+.journey-arrow { color: #1E5631; font-size: 14px; align-self: center; font-weight: bold; }
+
+.bullet-list { list-style: none; padding: 0; margin: 4px 0; }
+.bullet-list li { font-size: 10.5px; color: #1D3E2F; padding: 2px 0 2px 14px; position: relative; }
+.bullet-list li::before { content: '✓'; position: absolute; left: 0; color: #1E5631; font-weight: bold; font-size: 10px; }
+.bullet-list.arrow li::before { content: '→'; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+p { font-size: 11px; color: #1D3E2F; margin: 3px 0; }
+.footer { text-align: center; font-size: 9px; color: #AAAAAA; margin-top: 10px; }
+
+.flex-row { display: flex; gap: 8px; align-items: stretch; }
+.flex-row > * { flex: 1; }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="page">
+  <div style="height: 180px;"></div>
+  <h1 style="font-size: 24px; color: #1E5631; text-align:center; margin-bottom: 12px;">中国宠物驱虫药市场</h1>
+  <h1 style="font-size: 24px; color: #1E5631; text-align:center; margin-bottom: 16px;">竞争格局报告</h1>
+  <div style="border-top: 2px solid #1E5631; width: 50px; margin: 0 auto 14px;"></div>
+  <p style="text-align:center; font-size: 12px; color: #555555;">2024-2025 市场研究与竞争分析</p>
+  <p style="text-align:center; font-size: 11px; color: #888888; margin-top:4px;">数据来源：中金 | 国信证券 | 动脉网 | 前瞻产业研究院</p>
+  <div style="margin-top: 30px; text-align:center;">
+    <span class="tag">市场规模 347亿</span>
+    <span class="tag">CAGR 22.1%</span>
+    <span class="tag">硕腾 16%全球份额</span>
+    <span class="tag">第一梯队 外资品牌</span>
+    <span class="tag">国产替代元年 2024</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <table>
+      <tr>
+        <th>主要指标</th>
+        <th>数值</th>
+        <th>说明</th>
+      </tr>
+      <tr><td>中国宠物动保市场规模</td><td><b style="color:#1E5631;">347亿</b></td><td>2023年消费端，疫苗+药品</td></tr>
+      <tr><td>宠物驱虫药CAGR</td><td><b style="color:#1E5631;">22.1%</b></td><td>2017-2023，增速领先宠物各子领域</td></tr>
+      <tr><td>全球市占率 - 硕腾</td><td><b style="color:#1E5631;">16%</b></td><td>全球动保第一</td></tr>
+      <tr><td>硕腾宠物业务净利率</td><td><b style="color:#1E5631;">27%</b></td><td>2023年，畜禽为主的国内企业 &lt;20%</td></tr>
+      <tr><td>猫三联渗透率 - 中国</td><td><b style="color:#1E5631;">10%</b></td><td>vs 英国61%</td></tr>
+      <tr><td>小红书宠物兴趣用户</td><td><b style="color:#1E5631;">1.7亿</b></td><td>占月活用户约50%</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 第一页：市场规模 -->
+<div class="page">
+  <h2>一、市场规模与增长</h2>
+  <div class="grid3">
+    <div class="card">
+      <div class="metric">347亿</div>
+      <div class="metric-label">2023年中国宠物动保市场规模（疫苗+药品）</div>
+      <p class="text-small">CAGR 2017-2023: <b class="text-green">22.1%</b></p>
+    </div>
+    <div class="card">
+      <div class="metric">125亿</div>
+      <div class="metric-label">2023年全球宠物驱虫药市场规模（人民币）</div>
+      <p class="text-small">2026预计: <b class="text-green">150亿+</b></p>
+      <p class="text-small">2033预计: <b class="text-green">894亿</b></p>
+    </div>
+    <div class="card">
+      <div class="metric">x2.7</div>
+      <div class="metric-label">美国宠物动保市场规模<br>是中国的2.7倍</div>
+      <p class="text-small">中国市场仍处于早期成长阶段</p>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>市场驱动因素</h3>
+      <ul class="bullet-list">
+        <li>Z世代/千禧代将宠物视为家庭成员，情感消费导向</li>
+        <li>预防>治疗观念兴起，驱虫、疫苗使用频率提升</li>
+        <li>宠物猫数量连续4年超宠物狗，猫驱虫市场加速</li>
+        <li>宠物老龄化加速，未来3年3000万只步入中老年</li>
+        <li>2024年被视为"国产替代元年"</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>市场特征</h3>
+      <ul class="bullet-list">
+        <li>宠物动保：高壁垒、高盈利、C端情感定价</li>
+        <li>医院掌握处方定价权，宠物主价格不敏感</li>
+        <li>产品研发周期6-11年，研发壁垒极高</li>
+        <li>硕腾净利率27%，远超国内畜禽动保平均&lt;20%</li>
+        <li>全球动保CR10≈60%+，市场高度集中</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <h3>中国宠物动保 vs 美国（2023）</h3>
+    <div class="grid2" style="margin-top:6px;">
+      <div>
+        <p>• 市场规模：中国347亿 vs 美国931亿（2.7x差距）</p>
+        <p>• 增速：中国10.3% CAGR vs 美国8.4% CAGR</p>
+        <p>• 渗透率：猫三联中国10% vs 英国61%</p>
+      </div>
+      <div>
+        <p>• 消费导向：从B端成本导向→C端情感导向</p>
+        <p>• 竞争格局：分散→集中，国产替代加速</p>
+        <p>• 趋势：从治疗→预防，从仿制→创新</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 第二页：全球格局 -->
+<div class="page">
+  <h2>二、全球动保市场竞争格局</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>全球动保市占率排名（2021）</h3>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">硕腾 Zoetis</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:#1E5631;">全球第一</div></div>
+          <div class="bar-value">16%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">勃林格殷格翰</div>
+          <div class="bar-track"><div class="bar-fill" style="width:75%;background:#2E7D4F;">全球第二</div></div>
+          <div class="bar-value">~12%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">默沙东 MSD</div>
+          <div class="bar-track"><div class="bar-fill" style="width:62%;background:#3D9463;">全球第三</div></div>
+          <div class="bar-value">~10%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">礼蓝 Elanco</div>
+          <div class="bar-track"><div class="bar-fill" style="width:50%;background:#4CAF77;">全球第四</div></div>
+          <div class="bar-value">~8%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">其他合计</div>
+          <div class="bar-track"><div class="bar-fill" style="width:90%;background:#E0E0E0;color:#1D3E2F;">CR10</div></div>
+          <div class="bar-value">60%+</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>硕腾 vs 勃林格核心数据</h3>
+      <table style="margin-top:6px;">
+        <tr><th>指标</th><th>硕腾</th><th>勃林格</th></tr>
+        <tr><td>2023宠物业务收入</td><td><b class="text-green">55.8亿美元</b></td><td>—</td></tr>
+        <tr><td>宠物业务占比</td><td><b class="text-green">65%</b></td><td>领先</td></tr>
+        <tr><td>2023年净利率</td><td><b class="text-green">27%</b></td><td>—</td></tr>
+        <tr><td>近十年研发投入</td><td><b class="text-green">50亿美元+</b></td><td>—</td></tr>
+        <tr><td>旗舰单品</td><td>超可信系列</td><td><b class="text-green">10亿欧元+</b></td></tr>
+        <tr><td>中国策略</td><td>DTC+家庭配送</td><td>医院+零售双驱</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>硕腾 Zoetis — 战略重点</h3>
+      <ul class="bullet-list">
+        <li>2013-2023年宠物业务占比从35%→65%</li>
+        <li>单抗技术：Cytopoint（犬皮炎）2023年全球销售5亿美元</li>
+        <li>2017年收购Nexvet，填补生物制品单抗技术空白</li>
+        <li>五大疾病领域：慢性肾病/肿瘤/心脏病/肥胖/焦虑症</li>
+        <li>布局至少25种治疗和诊断方案</li>
+        <li>全球最大动保企业，市值858亿美元（2024.10）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>勃林格殷格翰 — 战略重点</h3>
+      <ul class="bullet-list">
+        <li>超可信（NexGard Spectra）：全球重磅单品，10亿欧元+</li>
+        <li>2030计划：推出或进一步开发20种新兽药</li>
+        <li>2023年NexGard COMBO：全球唯一驱绦虫猫用广谱驱虫药</li>
+        <li>收购拜耳动保，扩充宠物产品线</li>
+        <li>每12周一次，减少用药频次提升依从性</li>
+        <li>医院+零售双渠道驱动</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 第三页：中国竞争格局 -->
+<div class="page">
+  <h2>三、中国宠物驱虫药竞争格局（2025）</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>第一梯队 — 外资品牌（先发优势）</h3>
+      <div style="margin:6px 0;">
+        <span class="tag">硕腾 Zoetis</span>
+        <span class="tag">勃林格殷格翰</span>
+        <span class="tag">默沙东 MSD</span>
+        <span class="tag">礼蓝 Elanco</span>
+      </div>
+      <p style="font-size:10.5px;">主导中国宠物驱虫药市场<br>全球品牌影响力+研发壁垒+渠道先发</p>
+    </div>
+    <div class="card">
+      <h3>第二梯队 — 本土企业（快速追赶）</h3>
+      <div style="margin:6px 0;">
+        <span class="tag">海正动保</span>
+        <span class="tag">瑞普生物</span>
+        <span class="tag">普莱柯</span>
+      </div>
+      <p style="font-size:10.5px;">资金优势+高性价比路线<br>控股医院渠道+私域运营快速入局</p>
+    </div>
+  </div>
+  <table>
+    <tr>
+      <th>公司</th>
+      <th>核心驱虫产品</th>
+      <th>类型</th>
+      <th>差异化卖点</th>
+      <th>中国市场策略</th>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">硕腾 Zoetis</td>
+      <td>大宠爱(Revolution)<br>妙宠爱(Simparica)<br>欣宠克</td>
+      <td>内外同驱+外驱</td>
+      <td>单抗技术、起效快</td>
+      <td>DTC直连+家庭配送，绕开医院</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">勃林格 BI</td>
+      <td>超可信、尼可信、福味恩<br>福来恩、犬心保</td>
+      <td>内驱+外驱+内外同驱全覆盖</td>
+      <td>每12周一次（超可信）</td>
+      <td>医院+零售双渠道驱动</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">礼蓝 Elanco</td>
+      <td>爱沃克(Bravecto)<br>拜宠爽(Advantix)</td>
+      <td>外驱+内外同驱</td>
+      <td>集采联动、B端渗透</td>
+      <td>AI邮件营销+集采平台</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">海正动保</td>
+      <td>莫普欣、莫爱佳</td>
+      <td>内驱+外驱（仿制）</td>
+      <td>性价比、快速起效</td>
+      <td>线上旗舰店+让利渠道</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">瑞普生物</td>
+      <td>莫普欣（旗下）</td>
+      <td>内驱+外驱</td>
+      <td>控股医院渠道</td>
+      <td>持股瑞派宠物医院500+门店</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 第四页：Pet Owner Journey -->
+<div class="page">
+  <h2>四、Pet Owner Journey — 各阶段竞争策略</h2>
+  <div class="journey-flow">
+    <div class="journey-stage">
+      <h4>发现阶段</h4>
+      <ul>
+        <li>小红书1.7亿宠物兴趣用户</li>
+        <li>抖音测评内容种草</li>
+        <li>KOC口碑内容</li>
+        <li>宠物医院推荐</li>
+        <li>Z世代占养宠人群90%+</li>
+      </ul>
+    </div>
+    <div class="journey-arrow">→</div>
+    <div class="journey-stage">
+      <h4>决策阶段</h4>
+      <ul>
+        <li>医生处方主导（权威）</li>
+        <li>品牌信任+安全性口碑</li>
+        <li>价格敏感度低</li>
+        <li>预防>治疗理念</li>
+        <li>科学养宠精细化</li>
+      </ul>
+    </div>
+    <div class="journey-arrow">→</div>
+    <div class="journey-stage">
+      <h4>购买阶段</h4>
+      <ul>
+        <li>线上：天猫京东旗舰店</li>
+        <li>线下：宠物医院/宠物店</li>
+        <li>月均消费约100-300元</li>
+        <li>月均1次复购</li>
+        <li>电商占比69%</li>
+      </ul>
+    </div>
+    <div class="journey-arrow">→</div>
+    <div class="journey-stage">
+      <h4>忠诚阶段</h4>
+      <ul>
+        <li>私域微信社群运营</li>
+        <li>会员积分体系</li>
+        <li>定期驱虫提醒</li>
+        <li>宠物生命周期管理</li>
+        <li>口碑传播获新客</li>
+      </ul>
+    </div>
+  </div>
+  <table>
+    <tr>
+      <th>公司</th>
+      <th>发现阶段策略</th>
+      <th>决策阶段策略</th>
+      <th>购买阶段策略</th>
+      <th>忠诚阶段策略</th>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">硕腾</td>
+      <td>数字平台直连（DTC）<br>官网/App/家庭配送</td>
+      <td>缓解诊所访问量下降<br>涨价约4%（2026）</td>
+      <td>家庭配送绕过医院<br>自主渠道掌控</td>
+      <td>DTC直连用户<br>数字平台全周期</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">勃林格</td>
+      <td>医院处方教育深耕</td>
+      <td>超可信12周一次<br>减少用药频次</td>
+      <td>医院+连锁药店<br>双渠道驱动</td>
+      <td>专业医生推荐背书<br>品牌信任建立</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">礼蓝</td>
+      <td>B端集采平台合作<br>（兽医首选战略合作）</td>
+      <td>AI邮件个性化营销<br>目标互动率+25%</td>
+      <td>医院集采联动<br>降低医院采购成本</td>
+      <td>AI生命周期管理<br>提升复购频率</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">海正/瑞普</td>
+      <td>小红书/抖音内容矩阵<br>KOC种草</td>
+      <td>性价比产品力<br>快速起效口碑</td>
+      <td>线上旗舰店<br>宠物医院铺货</td>
+      <td>私域微信社群<br>会员积分体系</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 第五页：产品迭代 -->
+<div class="page">
+  <h2>五、驱虫药产品迭代方向与代表案例</h2>
+  <div class="grid4">
+    <div class="card">
+      <h3>① 虫谱拓宽</h3>
+      <p style="font-size:10px;color:#555555;margin-top:4px;">内驱→外驱→内外同驱<br>广谱驱虫是主流迭代方向</p>
+    </div>
+    <div class="card">
+      <h3>② 延长药效</h3>
+      <p style="font-size:10px;color:#555555;margin-top:4px;">每月1次→每12周1次<br>减少频次提升依从性</p>
+    </div>
+    <div class="card">
+      <h3>③ 安全性升级</h3>
+      <p style="font-size:10px;color:#555555;margin-top:4px;">更温和成分<br>按体重精准剂量化</p>
+    </div>
+    <div class="card">
+      <h3>④ 适口性改善</h3>
+      <p style="font-size:10px;color:#555555;margin-top:4px;">含牛肉成分软咀嚼片<br>解决宠物给药难问题</p>
+    </div>
+  </div>
+  <table>
+    <tr>
+      <th>公司</th>
+      <th>代表产品</th>
+      <th>迭代路径</th>
+      <th>核心技术/商业成就</th>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">硕腾</td>
+      <td>大宠爱(Revolution) → 妙宠爱(Simparica)</td>
+      <td>异噁唑啉类成分升级</td>
+      <td>驱虫种类：4种→7种，起效更快，2023皮肤病单品Cytopoint卖5亿美元</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">勃林格</td>
+      <td>NexGard → NexGard COMBO（2023）</td>
+      <td>添加驱绦虫功能</td>
+      <td>全球唯一能驱绦虫的猫用广谱驱虫药</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">硕腾</td>
+      <td>Proheart 6 → Proheart 12</td>
+      <td>心丝虫预防药效延长</td>
+      <td>6个月→12个月保护，一年一次给药</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">勃林格</td>
+      <td>超可信（Bravecto）</td>
+      <td>全球旗舰单品</td>
+      <td>全球销售超10亿欧元，每12周一次内外同驱</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">礼蓝</td>
+      <td>爱沃克（Bravecto）</td>
+      <td>B端集采联动</td>
+      <td>与兽医首选战略合作，提升医院采购粘性</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;color:#1E5631;white-space:nowrap;">海正</td>
+      <td>莫普欣、莫爱佳</td>
+      <td>仿制+性价比</td>
+      <td>吡虫啉+莫昔克丁成分，低于进口价格约30-50%</td>
+    </tr>
+  </table>
+  <div class="grid2" style="margin-top:8px;">
+    <div class="card">
+      <h3>国产vs进口驱虫药对比</h3>
+      <p style="font-size:10.5px;margin-top:4px;">• 成分对比：国产与进口均采用吡虫啉+莫昔克丁</p>
+      <p style="font-size:10.5px;">• 价格对比：国产单次/单支价格低于进口30-50%</p>
+      <p style="font-size:10.5px;">• 品牌信任：进口品牌有全球临床数据背书</p>
+      <p style="font-size:10.5px;">• 渠道策略：国产让利经销商（约40%毛利），进口品牌力强</p>
+    </div>
+    <div class="card">
+      <h3>研发壁垒说明</h3>
+      <p style="font-size:10.5px;margin-top:4px;">• 研发周期：宠物原研药6-11年</p>
+      <p style="font-size:10.5px;">• 研发投入：单品类1亿美元以上</p>
+      <p style="font-size:10.5px;">• 疫苗研发：8-10年，0.5-1亿美元/品</p>
+      <p style="font-size:10.5px;">• 硕腾近十年研发投入：50亿美元+</p>
+    </div>
+  </div>
+</div>
+
+<!-- 第六页：产业链+总结 -->
+<div class="page">
+  <h2>六、产业链结构与竞争格局总结</h2>
+  <div class="flex-row" style="margin-bottom:8px;">
+    <div class="card">
+      <h3>上游：研发生产</h3>
+      <p style="font-size:10px;color:#1D3E2F;">• 原研药企（硕腾/勃林格）</p>
+      <p style="font-size:10px;color:#1D3E2F;">• 仿制药企（海正/瑞普/普莱柯）</p>
+      <p style="font-size:10px;color:#1D3E2F;">• 原料药供应商</p>
+      <p style="font-size:10px;margin-top:4px;"><b class="text-green">研发周期6-11年</b></p>
+      <p style="font-size:10px;"><b class="text-green">研发投入1亿美元+/品</b></p>
+    </div>
+    <div style="color:#1E5631;font-size:22px;align-self:center;font-weight:bold;">→</div>
+    <div class="card">
+      <h3>中游：渠道流通</h3>
+      <p style="font-size:10px;color:#1D3E2F;">• 经销商（让利40%，竞争关键）</p>
+      <p style="font-size:10px;color:#1D3E2F;">• 宠物医院（处方权威，34,426家）</p>
+      <p style="font-size:10px;color:#1D3E2F;">• 电商平台（69%宠主首选）</p>
+      <p style="font-size:10px;margin-top:4px;"><b class="text-green">医院+电商双轨并行</b></p>
+      <p style="font-size:10px;"><b class="text-green">新瑞鹏1000+门店/瑞派600+</b></p>
+    </div>
+    <div style="color:#1E5631;font-size:22px;align-self:center;font-weight:bold;">→</div>
+    <div class="card">
+      <h3>下游：宠物主</h3>
+      <p style="font-size:10px;color:#1D3E2F;">• Z世代/千禧代核心用户</p>
+      <p style="font-size:10px;color:#1D3E2F;">• 情感消费导向，价格不敏感</p>
+      <p style="font-size:10px;color:#1D3E2F;">• 私域运营深度沉淀</p>
+      <p style="font-size:10px;margin-top:4px;"><b class="text-green">愿意为品质和安全付溢价</b></p>
+      <p style="font-size:10px;"><b class="text-green">1.7亿小红书宠物兴趣用户</b></p>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>外资品牌护城河</h3>
+      <ul class="bullet-list">
+        <li>先发优势 + 全球品牌积淀</li>
+        <li>研发壁垒高（6-11年研发周期）</li>
+        <li>内驱/外驱/内外同驱全矩阵</li>
+        <li>单抗技术创新（硕腾Cytopoint 5亿美元单品）</li>
+        <li>全球范围临床数据背书</li>
+        <li>DTC家庭配送绕开医院依赖（硕腾）</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>国产品牌突破口</h3>
+      <ul class="bullet-list arrow">
+        <li>高性价比路线（仿制药快速起效）</li>
+        <li>控股宠物医院渠道（瑞普持股瑞派500+）</li>
+        <li>线上私域运营（小红书/抖音内容）</li>
+        <li>本土毒株疫苗差异化（国产猫三联）</li>
+        <li>2024年被视为"国产替代元年"</li>
+        <li>集采联动模式降低医院采购成本</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="background:#E8F5EC;border-top:2.5px solid #1E5631;margin-top:6px;">
+    <h3>关键结论</h3>
+    <p style="font-size:10.5px;margin-top:4px;">① <b class="text-green">硕腾（Zoetis）</b>全球动保龙头，16%全球市占率，以DTC和家庭配送重塑渠道，65%业务来自宠物</p>
+    <p style="font-size:10.5px;">② <b class="text-green">勃林格</b>以超可信系列（12周一次）差异化突围，医院+零售双渠道，2030计划推20种新药</p>
+    <p style="font-size:10.5px;">③ <b class="text-green">礼蓝</b>通过AI营销和集采平台B端渗透，与医院建立战略合作，2026目标互动率+25%</p>
+    <p style="font-size:10.5px;">④ <b class="text-green">国货</b>以性价比+私域运营快速追赶，国产替代元年已开启</p>
+    <p style="font-size:10.5px;">⑤ <b class="text-green">未来迭代方向：</b>广谱驱虫 → 延长药效（12周） → 单抗技术升级</p>
+  </div>
+</div>
+
+<div class="footer">
+  pet-competitor 市场分析 | 数据截至2025年 | 仅供研究参考
+</div>
+
+</body>
+</html>
