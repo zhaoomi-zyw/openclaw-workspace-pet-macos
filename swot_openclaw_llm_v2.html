@@ -129,21 +129,17 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2.2mm;
+    justify-content: center;
+    gap: 4mm;
   }
 
   .cell-item {
-    font-size: 8pt;
+    font-size: 9.5pt;
     color: #1D3E2F;
-    line-height: 1.45;
-    padding-left: 2.5mm;
-    border-left: 2px solid;
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .cell-item-text {
-    flex: 1;
+    line-height: 1.5;
+    padding-left: 3mm;
+    border-left: 2.5px solid;
+    font-weight: 500;
   }
 
   /* === 颜色定义 === */
@@ -220,11 +216,11 @@
         <div class="cell-title-text">优势 Strengths</div>
       </div>
       <div class="cell-items">
-        <div class="cell-item"><span class="cell-item-text">✅ 多渠道信息聚合：同时抓取微信/小红书/抖音/知乎/行业网站，数据源覆盖全面</span></div>
-        <div class="cell-item"><span class="cell-item-text">✅ 7×24 小时自动化运行：云端 Gateway 不间断运行，定时推送竞品动态和行业新闻</span></div>
-        <div class="cell-item"><span class="cell-item-text">✅ 多语言研究能力：快速翻译总结英文/日文等海外市场报告，无语言障碍</span></div>
-        <div class="cell-item"><span class="cell-item-text">✅ 结构化报告生成：自动将碎片信息整合为 SWOT/竞品对比/行业地图等标准化报告</span></div>
-        <div class="cell-item"><span class="cell-item-text">✅ 记忆系统持久化：跨会话保持研究上下文，长期跟踪竞品/趋势的演变</span></div>
+        <div class="cell-item">全天候检索：7×24不间断抓取全网行业信息</div>
+        <div class="cell-item">多源整合：网页/社媒/数据库一站式汇聚</div>
+        <div class="cell-item">记忆系统：跨会话积累行业知识，构建企业洞察库</div>
+        <div class="cell-item">多格式输出：PDF报告/图表/摘要按需生成</div>
+        <div class="cell-item">成本效益：效率提升10倍以上，低成本替代顾问</div>
       </div>
     </div>
 
@@ -235,10 +231,10 @@
         <div class="cell-title-text">劣势 Weaknesses</div>
       </div>
       <div class="cell-items">
-        <div class="cell-item"><span class="cell-item-text">⚠️ 实时性局限：网络搜索有延迟，突发事件（监管政策/竞品黑天鹅）可能第一时间未覆盖</span></div>
-        <div class="cell-item"><span class="cell-item-text">⚠️ 数据合规边界：抓取的第三方数据需遵守版权和平台 Terms of Service</span></div>
-        <div class="cell-item"><span class="cell-item-text">⚠️ AIGC 幻觉风险：LLM 可能生成看似合理但事实错误的结论，关键数据需人工核实</span></div>
-        <div class="cell-item"><span class="cell-item-text">⚠️ API 成本累积：大规模研究报告生成会产生可观的 API 费用</span></div>
+        <div class="cell-item">平台登录限制：微信/小红书等需认证内容抓取受限</div>
+        <div class="cell-item">商业数据缺口：无法直接访问尼尔森/欧睿等付费数据</div>
+        <div class="cell-item">推理深度有限：复杂因果分析需人工复核</div>
+        <div class="cell-item">离线受限：依赖网络连接，断网则无法工作</div>
       </div>
     </div>
 
@@ -249,10 +245,10 @@
         <div class="cell-title-text">机会 Opportunities</div>
       </div>
       <div class="cell-items">
-        <div class="cell-item"><span class="cell-item-text">🚀 决策效率大幅提升：原本需要 3-5 天的竞品调研可缩短至数小时，加速市场响应</span></div>
-        <div class="cell-item"><span class="cell-item-text">🚀 知识管理数字化：将散落的行业认知结构化沉淀为公司资产，降低人员流动风险</span></div>
-        <div class="cell-item"><span class="cell-item-text">🚀 竞品动态实时预警：设置关键词监控，竞品新品上市/价格调整第一时间获知</span></div>
-        <div class="cell-item"><span class="cell-item-text">🚀 团队认知统一：标准化报告输出使跨部门对行业判断对齐，减少信息差</span></div>
+        <div class="cell-item">中小企业需求旺：预算有限但渴望数据驱动决策</div>
+        <div class="cell-item">国产替代趋势：企业倾向灵活可控的国产AI工具</div>
+        <div class="cell-item">垂直行业爆发：宠物/医疗/消费等赛道调研需求激增</div>
+        <div class="cell-item">新品快速验证：竞品格局+市场窗口期极速摸底</div>
       </div>
     </div>
 
@@ -263,10 +259,10 @@
         <div class="cell-title-text">威胁 Threats</div>
       </div>
       <div class="cell-items">
-        <div class="cell-item"><span class="cell-item-text">🔴 数据安全泄露风险：研究报告含敏感商业信息，若 Agent 被恶意引导可能外泄</span></div>
-        <div class="cell-item"><span class="cell-item-text">🔴 过度依赖 AI 结论：团队可能丧失独立分析能力，盲目跟随 AI 建议错失差异化洞察</span></div>
-        <div class="cell-item"><span class="cell-item-text">🔴 竞争壁垒降低：竞争对手同样可使用同类工具，行业认知差距缩小</span></div>
-        <div class="cell-item"><span class="cell-item-text">🔴 模型提供商锁定：深度依赖某一 LLM 厂商，API 价格或政策变化时迁移成本高</span></div>
+        <div class="cell-item">数据隐私风险：企业敏感信息需严格隔离保护</div>
+        <div class="cell-item">管理层信任门槛：AI洞察采纳率取决于组织AI素养</div>
+        <div class="cell-item">AI幻觉风险：关键结论错误可能导致商业误判</div>
+        <div class="cell-item">平台反爬机制：高频抓取可能触发封禁或法律风险</div>
       </div>
     </div>
 
