@@ -59,6 +59,26 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 - 需要登录的个人内容 → 放弃
 - 微博/贴吧公开内容 → Tavily（通常有搜索索引）
 
+## OpenClaw 远程访问（SSH隧道）
+
+**场景：** 从局域网另一台电脑（如 192.168.1.109）访问 Mac（192.168.1.112）上的 OpenClaw 控制台
+
+**方法：** SSH 隧道（不需要 HTTPS，不受浏览器安全策略限制）
+
+在远程电脑上运行：
+```bash
+ssh -L 18789:localhost:18789 omi@192.168.1.112
+```
+
+登录成功后，远程电脑浏览器访问：
+```
+http://localhost:18789
+```
+
+**原理：** 把远程 Mac 的 18789 端口映射到本地的 localhost
+
+**前提：** Mac 需开启 SSH 远程登录（系统设置 → 通用 → 共享 → 远程登录）
+
 ---
 
 Add whatever helps you do your job. This is your cheat sheet.

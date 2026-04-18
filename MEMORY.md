@@ -74,6 +74,14 @@
 - 国产替代加速，海正动保、瑞普生物等快速追赶
 
 
+## 教训/错误记录
+
+### SSH隧道访问OpenClaw（2026-04-18）
+- **问题：** 局域网另一台电脑通过 `http://192.168.1.112:18789` 访问 OpenClaw 报 `control ui requires device identity (use HTTPS or localhost secure context)`
+- **原因：** 浏览器安全策略禁止非HTTPS/非localhost的设备身份API
+- **解决：** 用 SSH 隧道 `ssh -L 18789:localhost:18789 omi@192.168.1.112`，然后访问 `http://localhost:18789`
+- **已记录到：** TOOLS.md
+
 ## 市场情报（来源：QQ用户图片，2026-04-15）
 
 ### 勃林格殷格翰2025大中华区动保市场 - 宠物相关
