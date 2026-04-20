@@ -35,6 +35,7 @@
 - openclaw-tavily-search skill installed (via cn mirror)
 - **GitHub 仓库**：https://github.com/zhaoomi-zyw/openclaw-workspace-pet-macos（Private）
 - **GitHub 同步**：每次 commit 后必须 `git push`，确保本地与 GitHub 同步
+- **生成文件存放规则**：所有新生成的 html/pdf/png 文件必须放在 `generate file/` 文件夹中，然后再 commit + push（不要放在根目录）
 
 ## 市场研究成果
 
