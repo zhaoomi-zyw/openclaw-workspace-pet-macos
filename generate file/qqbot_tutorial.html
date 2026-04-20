@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>QQ机器人创建教程 - 获取App ID和App Key</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+      color: #333;
+      background: #fff;
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 26px;
+      color: #12a0e3;
+      text-align: center;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+    }
+    h2 {
+      font-size: 18px;
+      color: #333;
+      margin: 28px 0 12px;
+      padding-left: 10px;
+      border-left: 4px solid #12a0e3;
+      font-weight: 600;
+    }
+    h3 {
+      font-size: 15px;
+      color: #555;
+      margin: 16px 0 8px;
+      font-weight: 600;
+    }
+    p { margin: 6px 0; }
+    ol, ul { margin: 8px 0 8px 20px; }
+    li { margin: 4px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    th {
+      background: #f0f7ff;
+      color: #333;
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid #d0e8ff;
+    }
+    td {
+      padding: 9px 14px;
+      border: 1px solid #e8e8e8;
+    }
+    tr:nth-child(even) td { background: #fafafa; }
+    .warning {
+      background: #fff8e6;
+      border: 1px solid #ffe58a;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 13px;
+    }
+    .warning::before {
+      content: "⚠️ ";
+    }
+    .code {
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 5px;
+      padding: 10px 14px;
+      font-family: "Menlo", "Consolas", monospace;
+      font-size: 12px;
+      overflow-x: auto;
+      margin: 10px 0;
+      white-space: pre;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 28px 0;
+    }
+    .footer {
+      text-align: center;
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid #eee;
+    }
+    .highlight { color: #12a0e3; font-weight: 600; }
+    .step-num {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background: #12a0e3;
+      color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+    .step-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📱 QQ 机器人创建教程</h1>
+<div class="subtitle">快速获取 App ID 和 App Key · 2026年4月</div>
+
+<h2>第一步：注册 / 登录 QQ 开放平台</h2>
+<ol>
+  <li>访问 <strong>QQ 开放平台</strong>：<a href="https://q.qq.com">https://q.qq.com</a></li>
+  <li>使用 QQ 号登录（如未注册需先完成开发者资质认证）</li>
+  <li>建议完成<strong>企业开发者认证</strong>，功能更全（个人开发者也可创建基础机器人）</li>
+</ol>
+
+<h2>第二步：创建应用</h2>
+<ol>
+  <li>进入「<span class="highlight">应用管理</span>」→「<span class="highlight">创建应用</span>」</li>
+  <li>选择应用类型：<span class="highlight">机器人</span>（非小程序/小游戏）</li>
+  <li>填写应用基本信息：
+    <ul>
+      <li>应用名称（建议与机器人名一致）</li>
+      <li>应用描述（不少于20字）</li>
+      <li>应用图标（建议 256×256 PNG 格式）</li>
+    </ul>
+  </li>
+  <li>提交审核，等待审批通过</li>
+</ol>
+
+<div class="warning">
+  应用名称和头像不要涉及知名品牌、 trademark 或敏感词，否则审核容易被拒。
+</div>
+
+<h2>第三步：获取 App ID 和 App Key</h2>
+<p>应用创建成功后，在<strong>应用详情页</strong>即可获取凭证：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>凭证名称</th>
+      <th>字段名</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>App ID</strong></td>
+      <td><code>client_id</code></td>
+      <td>应用的唯一标识，公开使用</td>
+    </tr>
+    <tr>
+      <td><strong>App Key</strong></td>
+      <td><code>client_secret</code></td>
+      <td>应用密钥，<span class="highlight">请勿泄露给他人</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>位置示意：应用详情页 → 「开发配置」→「凭证信息」</p>
+
+<h2>第四步：获取 Bot Token（API 调用用）</h2>
+<p>机器人上线后，通过以下接口获取 Access Token：</p>
+
+<div class="code">POST https://api.sgroup.qq.com/oauth2/token
+
+参数（form-data）：
+  grant_type    = client_credentials
+  client_id     = 你的 App ID
+  client_secret = 你的 App Key</div>
+
+<p>返回示例：</p>
+<div class="code">{
+  "access_token": "xxxxxxxxxxxxxxxx",
+  "expires_in": 7200,
+  "token_type": "Bearer"
+}</div>
+
+<hr class="divider">
+
+<h2>常见问题</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>问题</th>
+      <th>解答</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AppKey 忘记了怎么办？</td>
+      <td>进入应用详情页 → 「开发配置」→ 可重置 AppKey</td>
+    </tr>
+    <tr>
+      <td>个人开发者能创建机器人吗？</td>
+      <td>可以，但功能受限。企业认证后功能更完整</td>
+    </tr>
+    <tr>
+      <td>机器人审核不通过？</td>
+      <td>检查应用描述是否完整、头像是否合规、名称是否涉及 trademark</td>
+    </tr>
+    <tr>
+      <td>在哪找 Bot Token？</td>
+      <td>机器人上线后，通过上方 OAuth2 接口换取，非页面直接展示</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  📌 整理自 QQ 开放平台官方文档 · 2026年4月
+</div>
+
+</body>
+</html>

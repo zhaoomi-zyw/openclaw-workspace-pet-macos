@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw + LLM 市场调研 SWOT分析</title>
+<style>
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: #FFFFFF;
+    color: #1D3E2F;
+    width: 297mm;
+    height: 210mm;
+    overflow: hidden;
+  }
+
+  .page {
+    width: 297mm;
+    height: 210mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* === 顶部标题区 === */
+  .header {
+    background: linear-gradient(135deg, #1E5631 0%, #2E7D32 100%);
+    height: 20mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14mm;
+    position: relative;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    right: 10mm;
+    top: 5mm;
+    bottom: 5mm;
+    width: 3px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-title {
+    font-size: 20pt;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+
+  .header-subtitle {
+    font-size: 9.5pt;
+    color: rgba(255,255,255,0.75);
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+
+  .header-badge {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 8pt;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* === SWOT 网格 === */
+  .swot-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5mm;
+    padding: 6mm 9mm;
+  }
+
+  .swot-cell {
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-top: 3px solid;
+  }
+
+  .cell-header {
+    display: flex;
+    align-items: center;
+    padding: 3.5mm 5mm 3mm 5mm;
+  }
+
+  .cell-tag {
+    width: 9mm;
+    height: 9mm;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13pt;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-right: 4mm;
+  }
+
+  .cell-title-text {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+
+  .cell-items {
+    padding: 0 5mm 4mm 5mm;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4mm;
+  }
+
+  .cell-item {
+    font-size: 9.5pt;
+    color: #1D3E2F;
+    line-height: 1.5;
+    padding-left: 3mm;
+    border-left: 2.5px solid;
+    font-weight: 500;
+  }
+
+  /* === 颜色定义 === */
+  /* S - 优势：深森林绿 */
+  .cell-s {
+    background: linear-gradient(160deg, #E8F5E9 0%, #C8E6C9 100%);
+    border-top-color: #1E5631;
+  }
+  .cell-s .cell-tag { background: #1E5631; }
+  .cell-s .cell-header { background: #1E5631; }
+  .cell-s .cell-item { border-left-color: #4CAF50; }
+
+  /* W - 劣势：黄绿警示 */
+  .cell-w {
+    background: linear-gradient(160deg, #F9F9F9 0%, #F1F8E9 100%);
+    border-top-color: #558B2F;
+  }
+  .cell-w .cell-tag { background: #558B2F; }
+  .cell-w .cell-header { background: #558B2F; }
+  .cell-w .cell-item { border-left-color: #7CB342; }
+
+  /* O - 机会：深蓝 */
+  .cell-o {
+    background: linear-gradient(160deg, #E3F2FD 0%, #BBDEFB 100%);
+    border-top-color: #1565C0;
+  }
+  .cell-o .cell-tag { background: #1565C0; }
+  .cell-o .cell-header { background: #1565C0; }
+  .cell-o .cell-item { border-left-color: #42A5F5; }
+
+  /* T - 威胁：深红 */
+  .cell-t {
+    background: linear-gradient(160deg, #FFEBEE 0%, #FFCDD2 100%);
+    border-top-color: #B71C1C;
+  }
+  .cell-t .cell-tag { background: #B71C1C; }
+  .cell-t .cell-header { background: #B71C1C; }
+  .cell-t .cell-item { border-left-color: #EF5350; }
+
+  /* === 页脚 === */
+  .footer {
+    background: #1E5631;
+    height: 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12mm;
+  }
+
+  .footer-text {
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.7);
+  }
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="header-title">OpenClaw + LLM 市场调研与趋势分析</div>
+      <div class="header-subtitle">SWOT 战略分析 · AI 赋能企业洞察</div>
+    </div>
+    <div class="header-badge">2026 · 机密文件</div>
+  </div>
+
+  <div class="swot-grid">
+
+    <!-- S: 优势 -->
+    <div class="swot-cell cell-s">
+      <div class="cell-header">
+        <div class="cell-tag">S</div>
+        <div class="cell-title-text">优势 Strengths</div>
+      </div>
+      <div class="cell-items">
+        <div class="cell-item">全天候检索：7×24不间断抓取全网行业信息</div>
+        <div class="cell-item">多源整合：网页/社媒/数据库一站式汇聚</div>
+        <div class="cell-item">记忆系统：跨会话积累行业知识，构建企业洞察库</div>
+        <div class="cell-item">多格式输出：PDF报告/图表/摘要按需生成</div>
+        <div class="cell-item">成本效益：效率提升10倍以上，低成本替代顾问</div>
+      </div>
+    </div>
+
+    <!-- W: 劣势 -->
+    <div class="swot-cell cell-w">
+      <div class="cell-header">
+        <div class="cell-tag">W</div>
+        <div class="cell-title-text">劣势 Weaknesses</div>
+      </div>
+      <div class="cell-items">
+        <div class="cell-item">平台登录限制：微信/小红书等需认证内容抓取受限</div>
+        <div class="cell-item">商业数据缺口：无法直接访问尼尔森/欧睿等付费数据</div>
+        <div class="cell-item">推理深度有限：复杂因果分析需人工复核</div>
+        <div class="cell-item">离线受限：依赖网络连接，断网则无法工作</div>
+      </div>
+    </div>
+
+    <!-- O: 机会 -->
+    <div class="swot-cell cell-o">
+      <div class="cell-header">
+        <div class="cell-tag">O</div>
+        <div class="cell-title-text">机会 Opportunities</div>
+      </div>
+      <div class="cell-items">
+        <div class="cell-item">中小企业需求旺：预算有限但渴望数据驱动决策</div>
+        <div class="cell-item">国产替代趋势：企业倾向灵活可控的国产AI工具</div>
+        <div class="cell-item">垂直行业爆发：宠物/医疗/消费等赛道调研需求激增</div>
+        <div class="cell-item">新品快速验证：竞品格局+市场窗口期极速摸底</div>
+      </div>
+    </div>
+
+    <!-- T: 威胁 -->
+    <div class="swot-cell cell-t">
+      <div class="cell-header">
+        <div class="cell-tag">T</div>
+        <div class="cell-title-text">威胁 Threats</div>
+      </div>
+      <div class="cell-items">
+        <div class="cell-item">数据隐私风险：企业敏感信息需严格隔离保护</div>
+        <div class="cell-item">管理层信任门槛：AI洞察采纳率取决于组织AI素养</div>
+        <div class="cell-item">AI幻觉风险：关键结论错误可能导致商业误判</div>
+        <div class="cell-item">平台反爬机制：高频抓取可能触发封禁或法律风险</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">© OpenClaw + LLM 赋能企业市场调研 | 2026</div>
+    <div class="footer-text">Confidential · 仅供内部分享</div>
+  </div>
+
+</div>
+</body>
+</html>
