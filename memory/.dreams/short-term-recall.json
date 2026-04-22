@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-22T05:58:13.774Z",
+  "entries": {
+    "memory:memory/2026-04-08.md:27:56": {
+      "key": "memory:memory/2026-04-08.md:27:56",
+      "path": "memory/2026-04-08.md",
+      "startLine": 27,
+      "endLine": 56,
+      "source": "memory",
+      "snippet": "- [已完成] 上传内容包括： - 所有报告（PDF/HTML） - 工作配置（AGENTS.md、TOOLS.md、MEMORY.md） - memory/ 日志文件 - skills-for-share/ 共享目录（6个核心skill） - 仓库设为 Private ### 5. Skills 共享目录 - [已完成] 创建 `skills-for-share/` 目录，包含： - web-access（CDP浏览器自动化） - memory-setup（记忆系统配置） - agent-browser-clawdbot（浏览器自动化基础） - minimax-mcp-call（MiniMax搜索+图片理解） - minimax-multimodal（语音/音乐/视频/图片生成） - openclaw-tavily-search（Tavily网络搜索） - README.md 含完整安装命令 - 排除：self-improving-agent（含子模块）、last30days（35MB） ## 用户偏好/习惯 - 用户偏好深绿色标题的PDF报告风格 - 用户希望直接通过 QQBot 接收文件（用 `<qqmedia>` 标签） - 不需要 PowerMem 记忆系统，规范改善够用 ## 教训/错误 - 小红书帖子详情页全部404（帖子有时效性，未登录无法访问历史内容） - pip install fpdf2 超时，改用 Playwright 生成 PDF（成功） ## 待确认/进行中 - [进行中] 勃林格宠物药竞品生态报告",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "groundedCount": 0,
+      "totalScore": 1,
+      "maxScore": 1,
+      "firstRecalledAt": "2026-04-22T05:58:13.774Z",
+      "lastRecalledAt": "2026-04-22T05:58:13.774Z",
+      "queryHashes": [
+        "7225ab40a91b"
+      ],
+      "recallDays": [
+        "2026-04-22"
+      ],
+      "conceptTags": [
+        "网络",
+        "pdf/html",
+        "agents.md",
+        "tools.md",
+        "memory.md",
+        "skills-for-share",
+        "web-access",
+        "memory-setup"
+      ]
+    }
+  }
+}
