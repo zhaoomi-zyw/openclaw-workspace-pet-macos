@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中国宠物驱虫竞争地图：勃林格 vs 礼蓝 vs 默沙东 vs 硕腾</title>
+  <style>
+    :root {
+      --bg: #f3efe8;
+      --paper: #fffaf3;
+      --ink: #18222c;
+      --muted: #62707d;
+      --line: #ddd1c0;
+      --brand-1: #c85a2b;
+      --brand-2: #0c6b6b;
+      --brand-3: #8e6d17;
+      --brand-4: #536b1f;
+      --accent: #ecdfc9;
+      --good: #e8f2ef;
+      --shadow: 0 18px 42px rgba(29, 34, 38, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(200, 90, 43, 0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(12, 107, 107, 0.13), transparent 22%),
+        linear-gradient(180deg, #f8f3ea 0%, #f2ece1 100%);
+      line-height: 1.65;
+    }
+
+    a { color: var(--brand-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+      width: min(1280px, calc(100vw - 30px));
+      margin: 22px auto 40px;
+    }
+
+    .hero, .section, .panel, .source-card {
+      background: rgba(255, 250, 243, 0.94);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      border-radius: 26px;
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(19, 28, 36, 0.97), rgba(73, 49, 27, 0.95));
+      color: #fff8ef;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -110px;
+      bottom: -110px;
+      background: radial-gradient(circle, rgba(236, 223, 201, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e7c189;
+      margin-bottom: 12px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 52px);
+      max-width: 980px;
+    }
+
+    .hero p {
+      margin: 18px 0 0;
+      max-width: 940px;
+      color: rgba(255, 248, 239, 0.84);
+      font-size: 15px;
+    }
+
+    .hero-grid, .two-col, .four-col, .source-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hero-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+
+    .stat {
+      border-radius: 18px;
+      background: rgba(255, 250, 243, 0.93);
+      padding: 18px;
+      color: var(--ink);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat span {
+      font-size: 13px;
+      color: var(--muted);
+      display: block;
+    }
+
+    .section {
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 18px;
+    }
+
+    .section p.desc {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .panel {
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .two-col {
+      grid-template-columns: 1.2fr 1fr;
+      margin-top: 18px;
+      align-items: start;
+    }
+
+    .four-col {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .company-card {
+      border-radius: 18px;
+      padding: 18px;
+      background: #fffdf9;
+      border: 1px solid #eadfce;
+    }
+
+    .company-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+
+    .tag {
+      font-size: 12px;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #efe5d6;
+      border: 1px solid #e0d2be;
+      color: #36424d;
+    }
+
+    .tag.b1 { background: rgba(200, 90, 43, 0.12); color: #9c431d; }
+    .tag.b2 { background: rgba(12, 107, 107, 0.12); color: #0c6060; }
+    .tag.b3 { background: rgba(142, 109, 23, 0.12); color: #72570f; }
+    .tag.b4 { background: rgba(83, 107, 31, 0.12); color: #476114; }
+
+    ul.flat {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    ul.flat li + li { margin-top: 7px; }
+
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid #e4d7c5;
+      border-radius: 18px;
+      margin-top: 16px;
+      background: #fffdf9;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 980px;
+      font-size: 13px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #ece2d3;
+      padding: 12px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    thead th {
+      background: #f6efe4;
+      color: #4a5763;
+      font-size: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    td:first-child, th:first-child {
+      position: sticky;
+      left: 0;
+      background: #fffdf9;
+      z-index: 1;
+    }
+
+    thead th:first-child {
+      background: #f6efe4;
+      z-index: 2;
+    }
+
+    .chip {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+
+    .chip.inner { background: #ecf1ff; color: #314d8a; border-color: #cbd8f7; }
+    .chip.outer { background: #eef8f4; color: #1f6b58; border-color: #cce6dc; }
+    .chip.combo { background: #fff1d7; color: #8b6110; border-color: #eddcb4; }
+    .chip.note { background: #f3ece3; color: #5a6873; border-color: #dfd1be; }
+
+    .scorecard {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .scorecard .label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: #efe5d6;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .svg-wrap {
+      margin-top: 12px;
+      border: 1px solid #e5d9c9;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fffefb 0%, #f8f2e8 100%);
+      overflow: hidden;
+    }
+
+    .svg-chart {
+      display: block;
+      width: 100%;
+      height: 360px;
+    }
+
+    .caption {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .source-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .source-card {
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .source-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .source-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-card li + li { margin-top: 8px; }
+
+    .foot {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #f3ebdf;
+      color: #5d6871;
+      border: 1px solid #decebb;
+      font-size: 13px;
+    }
+
+    @media (max-width: 1120px) {
+      .hero-grid, .four-col, .two-col, .source-grid { grid-template-columns: 1fr; }
+      .scorecard { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .page { width: min(100vw - 18px, 1280px); margin: 10px auto 24px; }
+      .hero, .section, .panel, .source-card { padding: 18px; border-radius: 18px; }
+      h1 { font-size: 30px; }
+      .stat strong { font-size: 24px; }
+      .svg-chart { height: 320px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="eyebrow">China Companion Animal Deworming | Competitive Map</div>
+      <h1>勃林格 vs 礼蓝 vs 默沙东 vs 硕腾：中国宠物驱虫竞争地图</h1>
+      <p>
+        这份页面不再讲宏观市场，而是直接回答一线业务最关心的四个问题：
+        谁的产品矩阵最完整、谁在犬端更强、谁在猫端更强、谁最适合用来打口服化、长效化和全年化的营销战。
+        结构按 <strong>犬 / 猫 × 内驱 / 外驱 / 同驱 × 剂型 × 卖点</strong> 展开。
+      </p>
+      <div class="hero-grid">
+        <div class="stat">
+          <strong>勃林格</strong>
+          <span>矩阵最全，犬内外驱、犬同驱、猫同驱、口服与滴剂都有较清晰布局</span>
+        </div>
+        <div class="stat">
+          <strong>礼蓝</strong>
+          <span>经典品牌最多，拜耳动保资产整合后，滴剂、内驱、项圈都有代表产品</span>
+        </div>
+        <div class="stat">
+          <strong>默沙东</strong>
+          <span>公开中国市场最鲜明的锚点是贝卫多，主打 12 周长效外驱差异化</span>
+        </div>
+        <div class="stat">
+          <strong>硕腾</strong>
+          <span>大宠爱系在医院和消费者端都强，犬猫同驱与口服外驱都有现实存在感</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2>先看结论</h2>
+      <p class="desc">如果你是做品牌、渠道、KA 或市场策略，先抓这四条就够了。</p>
+      <div class="four-col">
+        <div class="company-card">
+          <h3>矩阵完整度</h3>
+          <div class="tag-row">
+            <span class="tag b1">勃林格领先</span>
+            <span class="tag b4">硕腾第二梯队</span>
+          </div>
+          <ul class="flat">
+            <li>勃林格同时覆盖福来恩、博来恩、超可信、犬心保、福味恩，形成从基础外驱到高阶同驱的完整梯队。</li>
+            <li>硕腾有大宠爱、妙宠爱、欣宠克，但当前公开可见的中国猫口服产品弱于勃林格。</li>
+          </ul>
+        </div>
+        <div class="company-card">
+          <h3>犬端竞争</h3>
+          <div class="tag-row">
+            <span class="tag b1">勃林格强</span>
+            <span class="tag b3">默沙东差异强</span>
+          </div>
+          <ul class="flat">
+            <li>勃林格犬端同时有外驱、内驱、同驱、心丝虫预防和口服新品，是最像平台选手的一家。</li>
+            <li>默沙东不求面广，但贝卫多的 12 周长效外驱定位非常清楚，适合打“省事”与“依从性”。</li>
+          </ul>
+        </div>
+        <div class="company-card">
+          <h3>猫端竞争</h3>
+          <div class="tag-row">
+            <span class="tag b4">硕腾强心智</span>
+            <span class="tag b1">勃林格强矩阵</span>
+          </div>
+          <ul class="flat">
+            <li>硕腾在猫驱虫消费端的可见度很高，尤其是大宠爱与妙宠爱组合。</li>
+            <li>勃林格的博来恩在猫同驱上更专业化，适合兽医渠道和高客单方案。</li>
+          </ul>
+        </div>
+        <div class="company-card">
+          <h3>营销打法</h3>
+          <div class="tag-row">
+            <span class="tag b2">礼蓝适合组合战</span>
+            <span class="tag b4">硕腾适合强教育战</span>
+          </div>
+          <ul class="flat">
+            <li>礼蓝最适合做“多品牌多剂型多价位”的货架竞争和渠道协同。</li>
+            <li>硕腾最适合做“医院推荐 + 品牌认知 + 猫主教育”的高渗透打法。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>四家公司战略画像</h2>
+      <p class="desc">这一屏是高层汇报最适合看的版本：不是列 SKU，而是告诉你每家公司在中国宠物驱虫上像什么选手。</p>
+      <div class="two-col">
+        <div class="panel">
+          <div class="four-col" style="margin-top:0;">
+            <div class="company-card">
+              <h3 style="color:var(--brand-1)">勃林格</h3>
+              <div class="tag-row">
+                <span class="tag b1">全矩阵</span>
+                <span class="tag b1">犬端完整</span>
+                <span class="tag b1">猫同驱强</span>
+              </div>
+              <ul class="flat">
+                <li>福来恩：犬猫外驱</li>
+                <li>博来恩：猫体内外同驱</li>
+                <li>超可信：犬口服同驱</li>
+                <li>犬心保：犬内驱 / 心丝虫预防</li>
+                <li>福味恩：犬口服外驱</li>
+              </ul>
+            </div>
+            <div class="company-card">
+              <h3 style="color:var(--brand-2)">礼蓝</h3>
+              <div class="tag-row">
+                <span class="tag b2">组合品牌</span>
+                <span class="tag b2">渠道深</span>
+                <span class="tag b2">项圈独特</span>
+              </div>
+              <ul class="flat">
+                <li>爱沃克：犬猫滴剂同驱</li>
+                <li>拜宠清：犬猫内驱</li>
+                <li>拜宠爽：犬外驱滴剂</li>
+                <li>索来多：犬猫长效项圈</li>
+              </ul>
+            </div>
+            <div class="company-card">
+              <h3 style="color:var(--brand-3)">默沙东</h3>
+              <div class="tag-row">
+                <span class="tag b3">大单品</span>
+                <span class="tag b3">长效 12 周</span>
+                <span class="tag b3">外驱锚点</span>
+              </div>
+              <ul class="flat">
+                <li>贝卫多咀嚼片：犬口服外驱</li>
+                <li>贝卫多滴剂：犬猫外驱</li>
+                <li>优势不是 SKU 多，而是长效卖点极强、定位清楚。</li>
+              </ul>
+            </div>
+            <div class="company-card">
+              <h3 style="color:var(--brand-4)">硕腾</h3>
+              <div class="tag-row">
+                <span class="tag b4">品牌心智强</span>
+                <span class="tag b4">医院教育强</span>
+                <span class="tag b4">猫端强</span>
+              </div>
+              <ul class="flat">
+                <li>大宠爱：犬猫滴剂同驱</li>
+                <li>妙宠爱：猫升级型同驱</li>
+                <li>欣宠克：犬口服外驱</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>相对强弱</h3>
+          <p class="desc">这是营销视角的主观评分，用来快速看清谁适合打什么仗，不是销售额排名。</p>
+          <div class="scorecard">
+            <div class="label">矩阵完整度：勃林格</div>
+            <div class="bar"><div class="fill" style="width:92%;background:#c85a2b"></div></div>
+            <div class="label">矩阵完整度：礼蓝</div>
+            <div class="bar"><div class="fill" style="width:80%;background:#0c6b6b"></div></div>
+            <div class="label">矩阵完整度：默沙东</div>
+            <div class="bar"><div class="fill" style="width:56%;background:#8e6d17"></div></div>
+            <div class="label">矩阵完整度：硕腾</div>
+            <div class="bar"><div class="fill" style="width:86%;background:#536b1f"></div></div>
+            <div class="label">消费者心智：勃林格</div>
+            <div class="bar"><div class="fill" style="width:82%;background:#c85a2b"></div></div>
+            <div class="label">消费者心智：礼蓝</div>
+            <div class="bar"><div class="fill" style="width:77%;background:#0c6b6b"></div></div>
+            <div class="label">消费者心智：默沙东</div>
+            <div class="bar"><div class="fill" style="width:72%;background:#8e6d17"></div></div>
+            <div class="label">消费者心智：硕腾</div>
+            <div class="bar"><div class="fill" style="width:90%;background:#536b1f"></div></div>
+          </div>
+          <div class="caption">读法：勃林格更像“体系化竞争者”，默沙东更像“单爆品驱动者”，硕腾更像“强品牌高渗透者”，礼蓝更像“经典品牌组合者”。</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>竞争地图</h2>
+      <p class="desc">按 <strong>犬 / 猫 × 内驱 / 外驱 / 同驱 × 剂型 × 卖点</strong> 展开。为保证可读性，产品按中国公开可见资料整理；硕腾部分由于中国官网公开产品索引较弱，采用公开品牌资料与行业商品库交叉整理，并在来源区单独说明。</p>
+
+      <div class="matrix-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>勃林格</th>
+              <th>礼蓝</th>
+              <th>默沙东</th>
+              <th>硕腾</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>犬 × 内驱</strong></td>
+              <td>
+                <span class="chip inner">犬心保</span>
+                <span class="chip note">口服咀嚼片</span>
+                <div>预防犬心丝虫，兼顾蛔虫 / 钩虫；每月一次。</div>
+              </td>
+              <td>
+                <span class="chip inner">拜宠清（犬）</span>
+                <span class="chip note">口服片剂</span>
+                <div>深度内驱，更突出绦虫覆盖；骨头形设计、肉香风味。</div>
+              </td>
+              <td>
+                <span class="chip note">公开核心锚点不在纯内驱</span>
+                <div>中国官网宠物驱虫公开重点集中在贝卫多外驱。</div>
+              </td>
+              <td>
+                <span class="chip combo">大宠爱</span>
+                <span class="chip note">滴剂</span>
+                <div>不是纯内驱，但可覆盖蛔虫、钩虫并预防心丝虫，常被视为“内外一体”方案。</div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>犬 × 外驱</strong></td>
+              <td>
+                <span class="chip outer">福来恩</span>
+                <span class="chip outer">福味恩</span>
+                <span class="chip note">滴剂 / 喷剂 / 口服</span>
+                <div>覆盖跳蚤、蜱虫，福味恩进一步打入口服化和给药依从性。</div>
+              </td>
+              <td>
+                <span class="chip outer">拜宠爽</span>
+                <span class="chip outer">索来多</span>
+                <span class="chip note">滴剂 / 项圈</span>
+                <div>拜宠爽主打驱避防叮咬；索来多主打长效佩戴式、防水和省心。</div>
+              </td>
+              <td>
+                <span class="chip outer">贝卫多咀嚼片</span>
+                <span class="chip outer">贝卫多滴剂</span>
+                <span class="chip note">口服 / 滴剂</span>
+                <div>最大差异点是 12 周持续外驱，不靠“多产品”，靠“长效一锤定音”。</div>
+              </td>
+              <td>
+                <span class="chip outer">欣宠克</span>
+                <span class="chip note">口服咀嚼片</span>
+                <div>猪肝口味、每月一次，针对跳蚤和蜱虫；适合对标口服外驱赛道。</div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>犬 × 同驱</strong></td>
+              <td>
+                <span class="chip combo">超可信</span>
+                <span class="chip note">口服咀嚼片</span>
+                <div>体内外同驱，覆盖跳蚤、蜱虫、螨虫、胃肠道线虫与心丝虫预防，是勃林格犬端最强单品之一。</div>
+              </td>
+              <td>
+                <span class="chip combo">爱沃克（犬）</span>
+                <span class="chip note">滴剂</span>
+                <div>吡虫啉 + 莫昔克丁，覆盖体内外常见寄生虫和心丝虫预防；每月一次。</div>
+              </td>
+              <td>
+                <span class="chip note">公开中国资料中未见主力犬同驱锚点</span>
+                <div>现有中国官网宠物驱虫公开重心偏贝卫多外驱，不像勃林格和礼蓝那样把同驱放在中心位。</div>
+              </td>
+              <td>
+                <span class="chip combo">大宠爱（犬）</span>
+                <span class="chip note">滴剂</span>
+                <div>犬猫共用家族心智强，内外一体、使用便捷、安全感高，医院端渗透优势明显。</div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>猫 × 内驱</strong></td>
+              <td>
+                <span class="chip combo">博来恩</span>
+                <span class="chip note">外滴同驱</span>
+                <div>严格来说不是纯内驱，但可覆盖胃肠道线虫和绦虫，猫端更偏专业同驱方案。</div>
+              </td>
+              <td>
+                <span class="chip inner">拜宠清（猫）</span>
+                <span class="chip note">口服片剂</span>
+                <div>深度内驱，突出对绦虫的覆盖；3周龄以上且体重不低于1kg幼猫可用。</div>
+              </td>
+              <td>
+                <span class="chip note">公开中国宠物驱虫核心锚点非猫内驱</span>
+                <div>猫相关公开主产品集中在贝卫多滴剂外驱。</div>
+              </td>
+              <td>
+                <span class="chip combo">大宠爱（猫）</span>
+                <span class="chip note">滴剂</span>
+                <div>在消费端常被视作“猫基础同驱标配”；不是单独纯内驱，但内驱价值感强。</div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>猫 × 外驱</strong></td>
+              <td>
+                <span class="chip outer">福来恩（猫）</span>
+                <span class="chip note">滴剂 / 喷剂</span>
+                <div>猫外驱经典产品，重在成熟心智与基础覆盖。</div>
+              </td>
+              <td>
+                <span class="chip outer">旺滴静（猫）</span>
+                <span class="chip outer">索来多（猫）</span>
+                <span class="chip note">滴剂 / 项圈</span>
+                <div>猫外驱层次分明：旺滴静偏基础体外驱虫，索来多偏长效佩戴方案。</div>
+              </td>
+              <td>
+                <span class="chip outer">贝卫多滴剂</span>
+                <span class="chip note">滴剂</span>
+                <div>猫跳蚤 / 蜱虫外驱，主打 12 周长效，是少数把“长效猫外驱”打得很清楚的方案。</div>
+              </td>
+              <td>
+                <span class="chip outer">暂无猫口服外驱公开锚点</span>
+                <span class="chip note">公开可见更偏同驱</span>
+                <div>硕腾猫端更强的公开心智来自大宠爱和妙宠爱，不是纯外驱单品。</div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>猫 × 同驱</strong></td>
+              <td>
+                <span class="chip combo">博来恩</span>
+                <span class="chip note">滴剂</span>
+                <div>非泼罗尼 + 甲氧普烯 + 乙酰氨基阿维菌素 + 吡喹酮，猫同驱专业度高，适合兽医推荐型方案。</div>
+              </td>
+              <td>
+                <span class="chip combo">爱沃克（猫）</span>
+                <span class="chip note">滴剂</span>
+                <div>礼蓝官网公开按钮显示有猫用产品；品牌长期以犬猫同驱定位运营，在猫端更偏家庭日常方案。</div>
+              </td>
+              <td>
+                <span class="chip note">未见主力猫同驱公开锚点</span>
+                <div>默沙东在中国公开宠物驱虫更像“长效外驱专家”，不是猫同驱主导者。</div>
+              </td>
+              <td>
+                <span class="chip combo">大宠爱</span>
+                <span class="chip combo">妙宠爱</span>
+                <span class="chip note">滴剂</span>
+                <div>大宠爱提供基础猫同驱认知，妙宠爱则主打升级型“内外同驱七种寄生虫、一个月有效”。</div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>剂型抓手</strong></td>
+              <td>最均衡：滴剂、喷剂、口服、同驱、内驱全有。</td>
+              <td>最丰富的非口服组合：滴剂、片剂、项圈并存。</td>
+              <td>最强的长效外驱：口服与滴剂双 12 周。</td>
+              <td>最强的“滴剂同驱 + 犬口服外驱”组合。</td>
+            </tr>
+            <tr>
+              <td><strong>主卖点</strong></td>
+              <td>矩阵完整、兽医专业、犬端平台化、口服化升级。</td>
+              <td>经典品牌资产、价位带丰富、场景多元、货架竞争强。</td>
+              <td>长效 12 周、省事、提高依从性、减少漏服。</td>
+              <td>品牌心智、医院教育、猫端强势、消费者认知深。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>二维竞争图</h2>
+      <p class="desc">横轴看“产品矩阵完整度”，纵轴看“消费者 / 医院端心智强度”。这张图不是财务数据，是营销策略图。</p>
+      <div class="svg-wrap">
+        <svg class="svg-chart" viewBox="0 0 960 360" role="img" aria-label="中国宠物驱虫竞争二维图">
+          <defs>
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fffefb"/>
+              <stop offset="100%" stop-color="#f8f2e8"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="960" height="360" fill="url(#bgGrad)"></rect>
+          <line x1="120" y1="290" x2="890" y2="290" stroke="#cdbda9" stroke-width="1.5"></line>
+          <line x1="120" y1="60" x2="120" y2="290" stroke="#cdbda9" stroke-width="1.5"></line>
+          <line x1="120" y1="115" x2="890" y2="115" stroke="#e7dbc9" stroke-dasharray="6 6"></line>
+          <line x1="120" y1="175" x2="890" y2="175" stroke="#e7dbc9" stroke-dasharray="6 6"></line>
+          <line x1="120" y1="235" x2="890" y2="235" stroke="#e7dbc9" stroke-dasharray="6 6"></line>
+          <line x1="315" y1="60" x2="315" y2="290" stroke="#e7dbc9" stroke-dasharray="6 6"></line>
+          <line x1="510" y1="60" x2="510" y2="290" stroke="#e7dbc9" stroke-dasharray="6 6"></line>
+          <line x1="705" y1="60" x2="705" y2="290" stroke="#e7dbc9" stroke-dasharray="6 6"></line>
+
+          <text x="505" y="335" text-anchor="middle" fill="#5f6b76" font-size="13">产品矩阵完整度 →</text>
+          <text x="22" y="175" transform="rotate(-90 22 175)" text-anchor="middle" fill="#5f6b76" font-size="13">消费者 / 医院端心智强度 →</text>
+
+          <circle cx="760" cy="128" r="16" fill="#c85a2b" opacity="0.9"></circle>
+          <text x="788" y="132" fill="#c85a2b" font-size="15" font-weight="700">勃林格</text>
+          <text x="788" y="151" fill="#62707d" font-size="12">矩阵最全，犬端平台化</text>
+
+          <circle cx="620" cy="168" r="16" fill="#0c6b6b" opacity="0.9"></circle>
+          <text x="648" y="172" fill="#0c6b6b" font-size="15" font-weight="700">礼蓝</text>
+          <text x="648" y="191" fill="#62707d" font-size="12">品牌组合多，渠道适配广</text>
+
+          <circle cx="470" cy="208" r="16" fill="#8e6d17" opacity="0.9"></circle>
+          <text x="498" y="212" fill="#8e6d17" font-size="15" font-weight="700">默沙东</text>
+          <text x="498" y="231" fill="#62707d" font-size="12">长效外驱差异最强</text>
+
+          <circle cx="700" cy="112" r="16" fill="#536b1f" opacity="0.9"></circle>
+          <text x="728" y="116" fill="#536b1f" font-size="15" font-weight="700">硕腾</text>
+          <text x="728" y="135" fill="#62707d" font-size="12">品牌心智和猫端渗透更强</text>
+
+          <text x="138" y="78" fill="#8a7561" font-size="12">高心智</text>
+          <text x="840" y="308" fill="#8a7561" font-size="12">高完整度</text>
+        </svg>
+      </div>
+      <div class="caption">如果你要做渠道打法：礼蓝和勃林格更值得按“矩阵+价位带”分析；如果要做消费者教育：硕腾和勃林格更值得按“品牌心智+临床背书”分析；如果要打差异点传播：默沙东的长效外驱最容易一句话讲清。</div>
+    </section>
+
+    <section class="section">
+      <h2>怎么用这张图做汇报</h2>
+      <p class="desc">不同听众，话术重点不同。下面这四条是可以直接拿去说的。</p>
+      <div class="four-col">
+        <div class="company-card">
+          <h3>给老板</h3>
+          <ul class="flat">
+            <li>勃林格和硕腾更像“体系型头部”，礼蓝像“多品牌货架型”，默沙东像“长效单爆品型”。</li>
+            <li>中国未来最值得打的是猫同驱、犬口服外驱、长效化和全年化心智。</li>
+          </ul>
+        </div>
+        <div class="company-card">
+          <h3>给销售</h3>
+          <ul class="flat">
+            <li>医院端更适合讲专业覆盖和处方逻辑，电商端更适合讲便捷、适口、周期长、省心。</li>
+            <li>礼蓝和勃林格更适合做组合陈列，默沙东更适合用单爆品拉动外驱品类。</li>
+          </ul>
+        </div>
+        <div class="company-card">
+          <h3>给市场</h3>
+          <ul class="flat">
+            <li>犬端内容重点是户外暴露、蜱虫和心丝虫；猫端重点是室内猫也要驱虫、低刺激、每月提醒。</li>
+            <li>口服化和长效化本质上都在解决依从性问题，不只是做新品类。</li>
+          </ul>
+        </div>
+        <div class="company-card">
+          <h3>给渠道</h3>
+          <ul class="flat">
+            <li>滴剂、项圈、口服片剂对应的是不同客群和价格带，不是简单替代关系。</li>
+            <li>高线城市更容易接受口服和同驱，基础外驱和项圈更适合做覆盖型打法。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>来源</h2>
+      <p class="desc">尽量优先使用中国官网和官方品牌站。硕腾部分因中国官网公开索引不完整，采用公开品牌资料和行业商品库交叉整理，并在页面中做了说明。</p>
+      <div class="source-grid">
+        <article class="source-card">
+          <h3>勃林格中国官网</h3>
+          <ul>
+            <li><a href="https://www.boehringer-ingelheim.cn/animal-health/chanpin/follain-compounded-fepronil-drops-fepronil-spray" target="_blank" rel="noreferrer">福来恩®（复方非泼罗尼滴剂 / 非泼罗尼喷剂）</a></li>
+            <li><a href="https://www.boehringer-ingelheim.cn/animal-health/chanpin/bolerion-compounded-fepronil-pyraquinone-drops" target="_blank" rel="noreferrer">博来恩®（猫用体内外同驱）</a></li>
+            <li><a href="https://www.boehringer-ingelheim.cn/animal-health/chanpin/ultra-trust-chewable-afranalmilbemycin-oxime-tablets" target="_blank" rel="noreferrer">超可信（犬口服体内外同驱）</a></li>
+            <li><a href="https://www.boehringer-ingelheim.cn/animal-health/chanpin/canine-cardioprotection-chewable-ivermectin-dihydroxynaphthylate-thiamphenicol" target="_blank" rel="noreferrer">犬心保（犬内驱 / 心丝虫预防）</a></li>
+            <li><a href="https://www.boehringer-ingelheim.cn/animal-health/chanpin/fumion-chewable-aflana" target="_blank" rel="noreferrer">福味恩®（犬口服外驱）</a></li>
+          </ul>
+        </article>
+
+        <article class="source-card">
+          <h3>礼蓝中国品牌站</h3>
+          <ul>
+            <li><a href="https://pethealth.elancoah.cn/portal/Brand/AdvocateDog" target="_blank" rel="noreferrer">爱沃克（犬用）</a></li>
+            <li><a href="https://pethealth.elancoah.cn/portal/Brand/DrontalDog" target="_blank" rel="noreferrer">拜宠清（犬用）</a></li>
+            <li><a href="https://pethealth.elancoah.cn/portal/Brand/DrontalCat" target="_blank" rel="noreferrer">拜宠清（猫用）</a></li>
+            <li><a href="https://pethealth.elancoah.cn/portal/Brand/AdvantixDog" target="_blank" rel="noreferrer">拜宠爽（犬用）</a></li>
+            <li><a href="https://pethealth.elancoah.cn/portal/Brand/SerestoDog" target="_blank" rel="noreferrer">索来多（犬用）</a></li>
+            <li><a href="https://pethealth.elancoah.cn/portal/product/Products?type=cat" target="_blank" rel="noreferrer">礼蓝宠物健康护理产品页</a></li>
+          </ul>
+        </article>
+
+        <article class="source-card">
+          <h3>默沙东动物保健中国</h3>
+          <ul>
+            <li><a href="https://www.msd-animal-health.com.cn/species/companion_animals/" target="_blank" rel="noreferrer">宠物产品总页</a></li>
+            <li><a href="https://www.msd-animal-health.com.cn/products/bravecto-chew/" target="_blank" rel="noreferrer">贝卫多®（犬用咀嚼片）</a></li>
+            <li><a href="https://www.msd-animal-health.com.cn/products/%E8%B4%9D%E5%8D%AB%E5%A4%9A%EF%BC%88bravecto%EF%BC%89/" target="_blank" rel="noreferrer">贝卫多®（滴剂）</a></li>
+            <li><a href="https://www.msd-animal-health.com.cn/company/msd-china" target="_blank" rel="noreferrer">默沙东动物保健在中国</a></li>
+          </ul>
+        </article>
+
+        <article class="source-card">
+          <h3>硕腾公开资料</h3>
+          <ul>
+            <li><a href="https://cn.chinadaily.com.cn/a/202303/13/WS640ed4f9a3102ada8b233587.html" target="_blank" rel="noreferrer">中国日报：大宠爱、妙宠爱相关公开报道</a></li>
+            <li><a href="https://www.isdpp.com/goods-454.html" target="_blank" rel="noreferrer">ISDPP：大宠爱（猫）商品库</a></li>
+            <li><a href="https://www.isdpp.com/goods-457.html" target="_blank" rel="noreferrer">ISDPP：大宠爱（犬）商品库</a></li>
+            <li><a href="https://www.isdpp.com/goods-627.html" target="_blank" rel="noreferrer">ISDPP：妙宠爱（猫）商品库</a></li>
+            <li><a href="https://www.isdpp.com/goods-635.html" target="_blank" rel="noreferrer">ISDPP：欣宠克（犬）商品库</a></li>
+          </ul>
+        </article>
+      </div>
+      <div class="foot">
+        截止时间：2026-04-25。页面强调的是中国市场公开可见产品矩阵和营销定位，不是注册批件全集，也不是销售份额排名。硕腾部分由于中国官网公开产品索引较弱，故使用公开品牌资料与行业商品库交叉整理；如用于正式外发投研文件，建议再补充企业访谈或注册批文核验。
+      </div>
+    </section>
+  </div>
+</body>
+</html>
