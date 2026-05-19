@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Hermes Agent Intel Mac 安装指南</title>
+<style>
+  body {
+    font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", "微软雅黑", sans-serif;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #333;
+    line-height: 1.8;
+  }
+  h1 { font-size: 22px; text-align: center; color: #222; border-bottom: 2px solid #222; padding-bottom: 10px; }
+  h2 { font-size: 16px; margin-top: 30px; color: #444; border-left: 4px solid #444; padding-left: 10px; }
+  h3 { font-size: 14px; margin-top: 20px; color: #555; }
+  .subtitle { text-align: center; color: #888; font-size: 13px; margin-bottom: 30px; }
+  .code {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-family: "SF Mono", "Menlo", "Monaco", Courier, monospace;
+    font-size: 13px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    line-height: 1.6;
+    margin: 8px 0;
+  }
+  .step { margin: 6px 0 6px 10px; }
+  .note { background: #fffbea; border-left: 4px solid #ffc107; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
+  @media print {
+    body { margin: 20px; }
+    h2 { page-break-before: auto; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Hermes Agent Intel Mac 安装指南</h1>
+<p class="subtitle">pet-competitor profile 专用</p>
+
+<h2>1. 安装 Python 3</h2>
+<p>macOS 系统自带 Python，但建议使用独立安装的 Python 3。</p>
+<div class="code"># 使用 Homebrew 安装（推荐）
+brew install python3
+
+# 验证安装
+python3 --version</div>
+
+<h2>2. 安装 Hermes Agent</h2>
+<p>macOS 不需要虚拟环境，直接安装即可。</p>
+<div class="code"># 安装 Hermes
+pip3 install hermes-agent
+
+# 验证安装
+hermes --version</div>
+
+<h2>3. 配置 Profile</h2>
+<p>pet-competitor profile 已配置完毕，配置文件位于：</p>
+<div class="code">~/.hermes/profiles/pet-competitor/config.yaml</div>
+<p>主要配置包括：</p>
+<div class="code">- providers: 配置了 MiniMax 作为默认 provider
+- platforms: 配置了 WeChat 平台
+- custom_providers: minimax-cn（base_url: https://api.minimaxi.com/v1）
+- memory: 存储宠物行业研报、全球动保五强财报等知识库</div>
+
+<h2>4. 配置 QQBot</h2>
+<p>在 config.yaml 中配置 QQBot 平台：</p>
+<div class="code">platforms:
+  qqbot:
+    enabled: true
+    bot_token: "YOUR_APPID:YOUR_APPSECRET"</div>
+<p>配置步骤：</p>
+<div class="step">1. 前往 QQ开放平台 (https://q.qq.com) 创建应用</div>
+<div class="step">2. 获取 AppID 和 AppSecret</div>
+<div class="step">3. 在 config.yaml 中填写：bot_token: "YOUR_APPID:YOUR_APPSECRET"</div>
+<div class="step">4. 重启 Hermes Agent 使配置生效</div>
+
+<h2>5. 配置 WeChat Bot</h2>
+<p>在 config.yaml 中配置 WeChat 平台：</p>
+<div class="code">platforms:
+  weixin:
+    enabled: true
+    bot_token: "YOUR_TOKEN:YOUR_AESKEY"</div>
+<p>配置步骤：</p>
+<div class="step">1. 前往微信公众平台 (https://mp.weixin.qq.com) 配置服务器信息</div>
+<div class="step">2. 获取 Token 和 EncodingAESKey</div>
+<div class="step">3. 在 config.yaml 中填写：bot_token: "TOKEN:AESKEY"</div>
+<div class="step">4. 重启 Hermes Agent 使配置生效</div>
+
+<h2>6. 启动 Hermes</h2>
+<div class="code"># 使用 pet-competitor profile 启动
+hermes profile use pet-competitor
+
+# 直接启动
+hermes run --profile pet-competitor &</div>
+
+<h2>7. 验证运行状态</h2>
+<div class="code"># 检查进程
+ps aux | grep hermes
+
+# 查看日志
+tail -f ~/.hermes/logs/gateway.log</div>
+
+<h2>8. 更新 Hermes</h2>
+<div class="code"># 升级到最新版本
+pip3 install --upgrade hermes-agent
+
+# 重启服务使新版本生效</div>
+
+</body>
+</html>
