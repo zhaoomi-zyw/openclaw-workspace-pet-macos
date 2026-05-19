@@ -67,27 +67,25 @@ hermes --version</div>
 - memory: 存储宠物行业研报、全球动保五强财报等知识库</div>
 
 <h2>4. 配置 QQBot</h2>
-<p>在 config.yaml 中配置 QQBot 平台：</p>
-<div class="code">platforms:
-  qqbot:
-    enabled: true
-    bot_token: "YOUR_APPID:YOUR_APPSECRET"</div>
+<p>使用 Hermes 命令配置 QQBot：</p>
+<div class="code"># 配置 AppID
+hermes config set platforms.qqbot.enabled true
+hermes config set platforms.qqbot.bot_token "YOUR_APPID:YOUR_APPSECRET"</div>
 <p>配置步骤：</p>
 <div class="step">1. 前往 QQ开放平台 (https://q.qq.com) 创建应用</div>
 <div class="step">2. 获取 AppID 和 AppSecret</div>
-<div class="step">3. 在 config.yaml 中填写：bot_token: "YOUR_APPID:YOUR_APPSECRET"</div>
+<div class="step">3. 使用上方命令配置（将 YOUR_APPID:YOUR_APPSECRET 替换为实际值）</div>
 <div class="step">4. 重启 Hermes Agent 使配置生效</div>
 
 <h2>5. 配置 WeChat Bot</h2>
-<p>在 config.yaml 中配置 WeChat 平台：</p>
-<div class="code">platforms:
-  weixin:
-    enabled: true
-    bot_token: "YOUR_TOKEN:YOUR_AESKEY"</div>
+<p>使用 Hermes 命令配置 WeChat Bot：</p>
+<div class="code"># 配置微信
+hermes config set platforms.weixin.enabled true
+hermes config set platforms.weixin.bot_token "YOUR_TOKEN:YOUR_AESKEY"</div>
 <p>配置步骤：</p>
 <div class="step">1. 前往微信公众平台 (https://mp.weixin.qq.com) 配置服务器信息</div>
 <div class="step">2. 获取 Token 和 EncodingAESKey</div>
-<div class="step">3. 在 config.yaml 中填写：bot_token: "TOKEN:AESKEY"</div>
+<div class="step">3. 使用上方命令配置（将 YOUR_TOKEN:YOUR_AESKEY 替换为实际值）</div>
 <div class="step">4. 重启 Hermes Agent 使配置生效</div>
 
 <h2>6. 启动 Hermes</h2>
