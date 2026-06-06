@@ -261,6 +261,42 @@
       margin-bottom: 8px;
     }
 
+    .tool-detail {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .tool-visual {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #eef8f2;
+      overflow: hidden;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tool-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .feature-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .feature {
+      border-left: 4px solid var(--bi-teal);
+      background: var(--soft);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+    }
+    .feature strong { color: var(--bi-blue); }
+
     .footer {
       display: flex;
       justify-content: space-between;
@@ -326,7 +362,7 @@
       </div>
       <div class="footer">
         <span>Source: zhaoomi-zyw/pet-knowledge-vault · internal working draft</span>
-        <span>01 / 12</span>
+        <span>01 / 17</span>
       </div>
     </section>
 
@@ -365,7 +401,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer"><span>Key message for IT/Digital</span><span>02 / 12</span></div>
+      <div class="footer"><span>Key message for IT/Digital</span><span>02 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -410,7 +446,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer"><span>Vault sources: 市场规模、战略分析</span><span>03 / 12</span></div>
+      <div class="footer"><span>Vault sources: 市场规模、战略分析</span><span>03 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -445,7 +481,7 @@
           <div class="node"><strong>Marketing automation</strong>：提醒与复购触达</div>
         </div>
       </div>
-      <div class="footer"><span>From ecosystem view to product roadmap</span><span>04 / 12</span></div>
+      <div class="footer"><span>From ecosystem view to product roadmap</span><span>04 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -504,7 +540,7 @@
           </tbody>
         </table>
       </div>
-      <div class="footer"><span>Vault source: 宠物驱虫药竞品清单</span><span>05 / 12</span></div>
+      <div class="footer"><span>Vault source: 宠物驱虫药竞品清单</span><span>05 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -563,7 +599,7 @@
           </ul>
         </div>
       </div>
-      <div class="footer"><span>Vault source: 产品剂型矩阵</span><span>06 / 12</span></div>
+      <div class="footer"><span>Vault source: 产品剂型矩阵</span><span>06 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -616,7 +652,127 @@
           </tbody>
         </table>
       </div>
-      <div class="footer"><span>Note: competitor digital capabilities are inferred from visible market signals, not internal competitor data</span><span>07 / 12</span></div>
+      <div class="footer"><span>Note: competitor digital capabilities are inferred from visible market signals, not internal competitor data</span><span>07 / 17</span></div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <div class="eyebrow">Digital Product 01</div>
+        <h2>微信小程序：把宠主教育、驱虫提醒、会员和复购入口放在一个轻量触点里</h2>
+        <p class="subtitle">WeChat Mini Program: combine education, reminders, membership and reorder into one owner-facing touchpoint.</p>
+      </div>
+      <div class="content tool-detail">
+        <div class="card">
+          <p class="headline">怎么做 / How to build</p>
+          <div class="feature-list">
+            <div class="feature"><strong>目标用户：</strong>猫主人、首次养宠人、多宠家庭，以及从医院首购后需要复购的宠主。</div>
+            <div class="feature"><strong>核心功能：</strong>宠物档案、驱虫日历、室内猫科普、产品查询、复购入口、会员权益。</div>
+            <div class="feature"><strong>数据输入：</strong>宠物品类、年龄、体重、城市、购买产品、上次驱虫日期、渠道来源。</div>
+            <div class="feature"><strong>MVP：</strong>先覆盖超可信和博来恩，支持手动建档、下次提醒和电商复购跳转。</div>
+            <div class="feature"><strong>KPI：</strong>注册数、提醒开启率、复购点击率、会员留存率。</div>
+          </div>
+        </div>
+        <div class="tool-visual">
+          <img src="assets/pet-owner-hub-preview.png" alt="Pet Owner Hub preview" />
+        </div>
+      </div>
+      <div class="footer"><span>Image generated with imagegen · Pet Owner Hub preview</span><span>08 / 17</span></div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <div class="eyebrow">Digital Product 02</div>
+        <h2>Vet Advisor：把兽医推荐从经验话术变成可复用的方案推荐工具</h2>
+        <p class="subtitle">Vet Advisor: turn veterinary recommendation into a reusable protocol and product-matching tool.</p>
+      </div>
+      <div class="content tool-detail">
+        <div class="card">
+          <p class="headline">怎么做 / How to build</p>
+          <div class="feature-list">
+            <div class="feature"><strong>目标用户：</strong>宠物医院兽医、助理、医学团队、销售培训团队。</div>
+            <div class="feature"><strong>核心功能：</strong>宠物风险评估、产品适配、竞品对比、推荐方案、教育内容库。</div>
+            <div class="feature"><strong>数据输入：</strong>犬/猫、年龄、体重、生活方式、外出频率、所在城市寄生虫风险、过往用药。</div>
+            <div class="feature"><strong>MVP：</strong>做 8-10 个常见场景方案，例如室内猫、幼宠、户外犬、多宠家庭。</div>
+            <div class="feature"><strong>KPI：</strong>重点医院月活、方案生成次数、培训完成率、推荐转化线索。</div>
+          </div>
+        </div>
+        <div class="tool-visual">
+          <img src="assets/vet-advisor-preview.png" alt="Vet Advisor preview" />
+        </div>
+      </div>
+      <div class="footer"><span>Image generated with imagegen · Vet Advisor preview</span><span>09 / 17</span></div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <div class="eyebrow">Digital Product 03</div>
+        <h2>驱虫日历 + 自动提醒：把“遗忘”变成可运营的复购触发器</h2>
+        <p class="subtitle">Deworming Calendar + Auto Reminder: convert forgetfulness into an actionable repurchase trigger.</p>
+      </div>
+      <div class="content tool-detail">
+        <div class="card">
+          <p class="headline">怎么做 / How to build</p>
+          <div class="feature-list">
+            <div class="feature"><strong>目标用户：</strong>购买过驱虫产品但没有稳定周期习惯的宠主。</div>
+            <div class="feature"><strong>核心功能：</strong>上次用药记录、下次用药计算、微信提醒、复购提醒、家庭多宠周期管理。</div>
+            <div class="feature"><strong>规则引擎：</strong>按产品保护周期、剂型、宠物体重、年龄和风险场景生成提醒。</div>
+            <div class="feature"><strong>MVP：</strong>先做月度提醒和 7 天前复购提醒，支持手动调整日期。</div>
+            <div class="feature"><strong>KPI：</strong>提醒开启率、提醒触达率、复购转化率、年度复购次数。</div>
+          </div>
+        </div>
+        <div class="tool-visual">
+          <img src="assets/deworming-calendar-preview.png" alt="Deworming Calendar preview" />
+        </div>
+      </div>
+      <div class="footer"><span>Image generated with imagegen · Deworming Calendar preview</span><span>10 / 17</span></div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <div class="eyebrow">Digital Product 04</div>
+        <h2>Channel Cockpit：让医院、电商、经销商和城市机会变得可视化</h2>
+        <p class="subtitle">Channel Cockpit: make clinic, e-commerce, distributor and city opportunities visible.</p>
+      </div>
+      <div class="content tool-detail">
+        <div class="card">
+          <p class="headline">怎么做 / How to build</p>
+          <div class="feature-list">
+            <div class="feature"><strong>目标用户：</strong>销售团队、渠道团队、区域经理、Digital/Commercial Excellence。</div>
+            <div class="feature"><strong>核心功能：</strong>区域动销、医院覆盖、电商趋势、经销库存风险、城市机会排行。</div>
+            <div class="feature"><strong>数据输入：</strong>经销商出货、医院覆盖、重点客户、平台销售、库存、价格带、城市层级。</div>
+            <div class="feature"><strong>MVP：</strong>先覆盖重点城市和重点产品，建立月度动销与库存风险看板。</div>
+            <div class="feature"><strong>KPI：</strong>重点城市覆盖率、缺货预警响应、渠道动销可视化覆盖、销售行动闭环率。</div>
+          </div>
+        </div>
+        <div class="tool-visual">
+          <img src="assets/channel-cockpit-preview.png" alt="Channel Cockpit preview" />
+        </div>
+      </div>
+      <div class="footer"><span>Image generated with imagegen · Channel Cockpit preview</span><span>11 / 17</span></div>
+    </section>
+
+    <section class="slide">
+      <div>
+        <div class="eyebrow">Digital Product 05</div>
+        <h2>Competitor Radar + Alerts：把竞品变化从人工周报升级为实时预警</h2>
+        <p class="subtitle">Competitor Radar + Alerts: upgrade competitor tracking from manual weekly reports to alert-driven intelligence.</p>
+      </div>
+      <div class="content tool-detail">
+        <div class="card">
+          <p class="headline">怎么做 / How to build</p>
+          <div class="feature-list">
+            <div class="feature"><strong>目标用户：</strong>市场、销售、渠道、电商运营、战略和 IT/Digital 团队。</div>
+            <div class="feature"><strong>核心功能：</strong>价格监测、促销监测、新品上架、内容声量、竞品事件时间线。</div>
+            <div class="feature"><strong>监测对象：</strong>硕腾、MSD、礼蓝、海正等重点竞品，以及核心平台和内容渠道。</div>
+            <div class="feature"><strong>MVP：</strong>先监控 10-15 个核心 SKU 和 3 个电商平台，设置价格/促销阈值提醒。</div>
+            <div class="feature"><strong>KPI：</strong>关键事件发现时效、预警准确率、业务响应时长、月度洞察采纳数。</div>
+          </div>
+        </div>
+        <div class="tool-visual">
+          <img src="assets/competitor-radar-preview.png" alt="Competitor Radar preview" />
+        </div>
+      </div>
+      <div class="footer"><span>Image generated with imagegen · Competitor Radar preview</span><span>12 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -654,7 +810,7 @@
           <p class="en">Improve regular deworming and annual repurchase: from selling a pack to operating a pet prevention cycle.</p>
         </div>
       </div>
-      <div class="footer"><span>Translated from business friction into product requirements</span><span>08 / 12</span></div>
+      <div class="footer"><span>Translated from business friction into product requirements</span><span>13 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -725,7 +881,7 @@
           <p>建议优先围绕超可信和博来恩试点：一个代表犬用咀嚼片，一个代表猫用滴剂。</p>
         </div>
       </div>
-      <div class="footer"><span>All requested opportunity areas covered</span><span>09 / 12</span></div>
+      <div class="footer"><span>All requested opportunity areas covered</span><span>14 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -780,7 +936,7 @@
         </div>
         <div class="axis">低落地难度 Low complexity → 高落地难度 High complexity</div>
       </div>
-      <div class="footer"><span>Prioritize value, speed and data learnings</span><span>10 / 12</span></div>
+      <div class="footer"><span>Prioritize value, speed and data learnings</span><span>15 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -821,7 +977,7 @@
           <span class="tag p2">Owner: Cross-functional squad</span>
         </div>
       </div>
-      <div class="footer"><span>Roadmap designed for IT/Digital execution</span><span>11 / 12</span></div>
+      <div class="footer"><span>Roadmap designed for IT/Digital execution</span><span>16 / 17</span></div>
     </section>
 
     <section class="slide">
@@ -860,7 +1016,7 @@
           <p class="en">Upgrade BI dewormer business from portfolio advantage to preventive-health digital operating advantage.</p>
         </div>
       </div>
-      <div class="footer"><span>Prepared for BI China IT/Digital discussion</span><span>12 / 12</span></div>
+      <div class="footer"><span>Prepared for BI China IT/Digital discussion</span><span>17 / 17</span></div>
     </section>
   </main>
 </body>
